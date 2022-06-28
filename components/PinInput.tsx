@@ -1,24 +1,8 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, TextInput } from 'react-native';
+import { TextInput } from 'react-native';
 import { usePinInput } from '../machines/pinInput';
 import { Row } from './ui';
-import { Colors } from './ui/styleUtils';
-
-const styles = StyleSheet.create({
-  input: {
-    borderBottomWidth: 1,
-    borderColor: Colors.Grey,
-    color: Colors.Black,
-    flex: 1,
-    fontFamily: 'Poppins_600SemiBold',
-    fontSize: 18,
-    fontWeight: '600',
-    height: 40,
-    lineHeight: 28,
-    margin: 8,
-    textAlign: 'center',
-  },
-});
+import { Colors, Styles } from './ui/styleUtils';
 
 export const PinInput: React.FC<PinInputProps> = (props) => {
   const { state, send, events } = usePinInput(props.length);
@@ -39,7 +23,7 @@ export const PinInput: React.FC<PinInputProps> = (props) => {
           keyboardType="numeric"
           maxLength={1}
           selectionColor={Colors.Orange}
-          style={styles.input}
+          style={Styles.input}
           key={index}
           ref={input}
           value={values[index]}

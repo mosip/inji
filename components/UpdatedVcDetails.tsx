@@ -2,52 +2,18 @@ import { formatDistanceToNow } from 'date-fns';
 import React from 'react';
 import * as DateFnsLocale from '../lib/date-fns/locale';
 import { useTranslation } from 'react-i18next';
-import { Image, StyleSheet, View, ImageBackground } from 'react-native';
+import { Image, View, ImageBackground } from 'react-native';
 import { Icon, ListItem } from 'react-native-elements';
 import { VC, CredentialSubject } from '../types/vc';
 import { Column, Row, Text } from './ui';
-import { Colors } from './ui/styleUtils';
+import {
+  Colors,
+  Styles,
+  ProfileIcon,
+  MosipLogo,
+  OpenCard,
+} from './ui/styleUtils';
 import { TextItem } from './ui/TextItem';
-
-const styles = StyleSheet.create({
-  successTag: {
-    backgroundColor: Colors.Green,
-    height: 43,
-    flex: 1,
-    alignItems: 'center',
-    paddingLeft: 6,
-  },
-  header: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingLeft: 18,
-    margin: 6,
-  },
-  logo: {
-    height: 50,
-    width: 40,
-    marginRight: 10,
-  },
-  container: {
-    flex: 2,
-    padding: 10,
-  },
-  detailes: {
-    width: 290,
-    marginLeft: 110,
-    marginTop: 0,
-  },
-  labelPart: {
-    margin: 0,
-    borderRadius: 0,
-    borderWidth: 0,
-    width: 240,
-    borderBottomWidth: 0,
-    backgroundColor: 'transparent',
-  },
-});
 
 const VerifiedIcon: React.FC = () => {
   return (
@@ -64,15 +30,10 @@ export const UpdatedVcDetails: React.FC<VcDetailsProps> = (props) => {
   const { t, i18n } = useTranslation('VcDetails');
 
   return (
-    <ImageBackground
-      style={{
-        width: '100%',
-        height: '100%',
-      }}
-      source={require('../assets/ID-open.png')}>
-      <View style={styles.header}>
+    <ImageBackground style={Styles.bgContainer} source={OpenCard}>
+      <View style={Styles.closeDetailsHeader}>
         <View>
-          <Text weight="bold" size="smaller" color={Colors.Orange}>
+          <Text weight="bold" size="smaller" color={Colors.DetailsText}>
             {t('fullName')}
           </Text>
           <Text weight="bold" size="smaller">
@@ -81,13 +42,10 @@ export const UpdatedVcDetails: React.FC<VcDetailsProps> = (props) => {
             )}
           </Text>
         </View>
-        <Image
-          source={require('../assets/mosip-logo.png')}
-          style={styles.logo}
-        />
+        <Image source={MosipLogo} style={Styles.logo} />
       </View>
 
-      <Row style={styles.container}>
+      <Row style={Styles.openDetailsContainer}>
         <ListItem bottomDivider>
           <ListItem.Content>
             <ListItem.Subtitle>{t('photo')}</ListItem.Subtitle>
@@ -96,30 +54,18 @@ export const UpdatedVcDetails: React.FC<VcDetailsProps> = (props) => {
                 source={
                   props.vc?.credential.biometrics?.face
                     ? { uri: props.vc?.credential.biometrics.face }
-                    : require('../assets/placeholder-photo.png')
+                    : ProfileIcon
                 }
-                style={{
-                  width: 128,
-                  height: 180,
-                  resizeMode: 'cover',
-                  borderRadius: 5,
-                  marginTop: -25,
-                  marginLeft: -14,
-                  padding: 10,
-                }}
+                style={Styles.openCardImage}
               />
             </ListItem.Content>
           </ListItem.Content>
         </ListItem>
 
-        <Column style={styles.detailes}>
-          <Column style={styles.labelPart}>
-            <Column
-              fill
-              padding="12 16"
-              margin="0 16 0 0"
-              style={styles.labelPart}>
-              <Text weight="bold" size="smaller" color={Colors.Orange}>
+        <Column style={Styles.details}>
+          <Column style={Styles.labelPart}>
+            <Column fill style={Styles.labelPart}>
+              <Text weight="bold" size="smaller" color={Colors.DetailsText}>
                 {props.vc?.idType}
               </Text>
               <Text weight="semibold" size="smaller">
@@ -127,12 +73,8 @@ export const UpdatedVcDetails: React.FC<VcDetailsProps> = (props) => {
               </Text>
             </Column>
 
-            <Column
-              fill
-              padding="12 16"
-              margin="0 16 0 0"
-              style={styles.labelPart}>
-              <Text weight="bold" size="smaller" color={Colors.Orange}>
+            <Column fill style={Styles.labelPart}>
+              <Text weight="bold" size="smaller" color={Colors.DetailsText}>
                 {t('generatedOn')}
               </Text>
               <Text weight="semibold" size="smaller">
@@ -140,8 +82,8 @@ export const UpdatedVcDetails: React.FC<VcDetailsProps> = (props) => {
               </Text>
             </Column>
 
-            <Column fill padding="12 16" style={styles.labelPart}>
-              <Text weight="bold" size="smaller" color={Colors.Orange}>
+            <Column fill style={Styles.labelPart}>
+              <Text weight="bold" size="smaller" color={Colors.DetailsText}>
                 {t('status')}
               </Text>
               <Row>
@@ -151,79 +93,62 @@ export const UpdatedVcDetails: React.FC<VcDetailsProps> = (props) => {
                 {props.vc?.isVerified && <VerifiedIcon />}
               </Row>
             </Column>
-          </Column>
+            <Column fill style={Styles.labelPart}>
+              <Text weight="bold" size="smaller" color={Colors.DetailsText}>
+                {t('gender')}
+              </Text>
+              <Text weight="semibold" size="smaller">
+                {getLocalizedField(
+                  props.vc?.verifiableCredential.credentialSubject.gender
+                )}
+              </Text>
+            </Column>
 
-          <Column
-            fill
-            padding="12 16"
-            margin="0 16 0 0"
-            style={styles.labelPart}>
-            <Text weight="bold" size="smaller" color={Colors.Orange}>
-              {t('gender')}
-            </Text>
-            <Text weight="semibold" size="smaller">
-              {getLocalizedField(
-                props.vc?.verifiableCredential.credentialSubject.gender
-              )}
-            </Text>
-          </Column>
+            <Column fill style={Styles.labelPart}>
+              <Text weight="bold" size="smaller" color={Colors.DetailsText}>
+                {t('dateOfBirth')}
+              </Text>
+              <Text weight="semibold" size="smaller">
+                {new Date(
+                  getLocalizedField(
+                    props.vc?.verifiableCredential.credentialSubject.dateOfBirth
+                  )
+                ).toLocaleDateString()}
+              </Text>
+            </Column>
 
-          <Column
-            fill
-            padding="12 16"
-            margin="0 16 0 0"
-            style={styles.labelPart}>
-            <Text weight="bold" size="smaller" color={Colors.Orange}>
-              {t('dateOfBirth')}
-            </Text>
-            <Text weight="semibold" size="smaller">
-              {getLocalizedField(
-                props.vc?.verifiableCredential.credentialSubject.dateOfBirth
-              )}
-            </Text>
-          </Column>
+            <Column fill style={Styles.labelPart}>
+              <Text weight="bold" size="smaller" color={Colors.DetailsText}>
+                {t('phoneNumber')}
+              </Text>
+              <Text weight="semibold" size="smaller">
+                {getLocalizedField(
+                  props.vc?.verifiableCredential.credentialSubject.phone
+                )}
+              </Text>
+            </Column>
 
-          <Column
-            fill
-            padding="12 16"
-            margin="0 16 0 0"
-            style={styles.labelPart}>
-            <Text weight="bold" size="smaller" color={Colors.Orange}>
-              {t('phoneNumber')}
-            </Text>
-            <Text weight="semibold" size="smaller">
-              {getLocalizedField(
-                props.vc?.verifiableCredential.credentialSubject.phone
-              )}
-            </Text>
-          </Column>
+            <Column fill style={Styles.labelPart}>
+              <Text weight="bold" size="smaller" color={Colors.DetailsText}>
+                {t('email')}
+              </Text>
+              <Text weight="semibold" size="smaller">
+                {getLocalizedField(
+                  props.vc?.verifiableCredential.credentialSubject.email
+                )}
+              </Text>
+            </Column>
 
-          <Column
-            fill
-            padding="12 16"
-            margin="0 16 0 0"
-            style={styles.labelPart}>
-            <Text weight="bold" size="smaller" color={Colors.Orange}>
-              {t('email')}
-            </Text>
-            <Text weight="semibold" size="smaller">
-              {getLocalizedField(
-                props.vc?.verifiableCredential.credentialSubject.email
-              )}
-            </Text>
-          </Column>
-
-          <Column
-            fill
-            padding="12 16"
-            margin="0 16 0 0"
-            style={styles.labelPart}>
-            <Text weight="bold" size="smaller" color={Colors.Orange}>
-              {t('address')}
-            </Text>
-            <Text weight="semibold" size="smaller">
-              {getFullAddress(props.vc?.verifiableCredential.credentialSubject)}
-            </Text>
+            <Column fill style={Styles.labelPart}>
+              <Text weight="bold" size="smaller" color={Colors.DetailsText}>
+                {t('address')}
+              </Text>
+              <Text weight="semibold" size="smaller">
+                {getFullAddress(
+                  props.vc?.verifiableCredential.credentialSubject
+                )}
+              </Text>
+            </Column>
           </Column>
 
           {props.vc?.reason?.length > 0 && (

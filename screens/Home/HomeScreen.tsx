@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Tab } from 'react-native-elements';
 import { Column, Text } from '../../components/ui';
-import { Colors } from '../../components/ui/styleUtils';
+import { Colors, Styles } from '../../components/ui/styleUtils';
 import { HomeRouteProps } from '../../routes/main';
 import { HistoryTab } from './HistoryTab';
 import { MyVcsTab } from './MyVcsTab';
@@ -14,19 +14,6 @@ import { useTranslation } from 'react-i18next';
 import { ActorRefFrom } from 'xstate';
 import { vcItemMachine } from '../../machines/vcItem';
 
-const styles = StyleSheet.create({
-  tabIndicator: {
-    backgroundColor: Colors.Orange,
-  },
-  tabContainer: {
-    backgroundColor: 'transparent',
-    justifyContent: 'center',
-  },
-  tabView: {
-    flex: 1,
-  },
-});
-
 export const HomeScreen: React.FC<HomeRouteProps> = (props) => {
   const { t } = useTranslation('HomeScreen');
   const controller = useHomeScreen(props);
@@ -37,7 +24,7 @@ export const HomeScreen: React.FC<HomeRouteProps> = (props) => {
         <Tab
           value={controller.activeTab}
           onChange={controller.SELECT_TAB}
-          indicatorStyle={styles.tabIndicator}>
+          indicatorStyle={Styles.tabIndicator}>
           {TabItem(t('myVcsTab', { vcLabel: controller.vcLabel.plural }))}
           {TabItem(t('receivedVcsTab', { vcLabel: controller.vcLabel.plural }))}
           {TabItem(t('historyTab'))}
@@ -77,9 +64,9 @@ export const HomeScreen: React.FC<HomeRouteProps> = (props) => {
 function TabItem(title: string) {
   return (
     <Tab.Item
-      containerStyle={styles.tabContainer}
+      containerStyle={Styles.tabContainer}
       title={
-        <Text align="center" color={Colors.Orange}>
+        <Text align="center" color={Colors.TabItemText}>
           {title}
         </Text>
       }

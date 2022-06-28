@@ -33,6 +33,12 @@ const styles = StyleSheet.create({
   disabled: {
     opacity: 0.5,
   },
+  addId: {
+    backgroundColor: Colors.AddIdBtnBg,
+  },
+  clearAddIdBtnBg: {
+    backgroundColor: Colors.ClearAddIdBtnBg,
+  },
 });
 
 export const Button: React.FC<ButtonProps> = (props) => {
@@ -61,7 +67,9 @@ export const Button: React.FC<ButtonProps> = (props) => {
         <Text
           weight="semibold"
           align="center"
-          color={type === 'solid' ? Colors.White : Colors.Orange}>
+          color={
+            type === 'solid' || type === 'addId' ? Colors.White : Colors.Orange
+          }>
           {props.title}
         </Text>
       }

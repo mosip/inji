@@ -42,7 +42,7 @@ export const MainLayout: React.FC<RootRouteProps> = () => {
             tabBarIcon: ({ focused }) => (
               <Icon
                 name={route.icon}
-                color={focused ? Colors.Orange : Colors.Grey}
+                color={focused ? Colors.IconBg : Colors.Grey}
                 reverse={focused}
               />
             ),

@@ -89,6 +89,7 @@
   "name": "mosip-resident-app",
   "version": "1.0.0",
   "lint-staged": {
+    "*.{ts,tsx}": "eslint --cache --fix",
     "*.{ts,tsx,js,css,md}": "prettier --write",
     "*.strings.json": "node scripts/compile-strings.js"
   }

@@ -19,11 +19,12 @@ export const MyVcsTab: React.FC<HomeScreenTabProps> = (props) => {
   return (
     <React.Fragment>
       <Column fill style={{ display: props.isVisible ? 'flex' : 'none' }}>
-        <Column fill padding="32 24">
+        <Column fill padding="20 24">
           {controller.vcKeys.length > 0 && (
             <React.Fragment>
               <Column
                 scroll
+                margin="0 0 20 0"
                 refreshControl={
                   <RefreshControl
                     refreshing={controller.isRefreshingVcs}
@@ -38,20 +39,19 @@ export const MyVcsTab: React.FC<HomeScreenTabProps> = (props) => {
                     onPress={controller.VIEW_VC}
                   />
                 ))}
+                <GestureRecognizer onSwipeLeft={props.onSwipe}>
+                  <Column elevation={2} margin="10 2 0 2">
+                    <Button
+                      type="clearAddIdBtnBg"
+                      disabled={controller.isRefreshingVcs}
+                      title={t('addVcButton', {
+                        vcLabel: controller.vcLabel.singular,
+                      })}
+                      onPress={controller.ADD_VC}
+                    />
+                  </Column>
+                </GestureRecognizer>
               </Column>
-
-              <GestureRecognizer onSwipeLeft={props.onSwipe}>
-                <Column elevation={2} margin="0 2">
-                  <Button
-                    type="clear"
-                    disabled={controller.isRefreshingVcs}
-                    title={t('addVcButton', {
-                      vcLabel: controller.vcLabel.singular,
-                    })}
-                    onPress={controller.ADD_VC}
-                  />
-                </Column>
-              </GestureRecognizer>
             </React.Fragment>
           )}
           {controller.vcKeys.length === 0 && (
@@ -74,6 +74,7 @@ export const MyVcsTab: React.FC<HomeScreenTabProps> = (props) => {
 
               <GestureRecognizer onSwipeLeft={props.onSwipe}>
                 <Button
+                  type="addId"
                   disabled={controller.isRefreshingVcs}
                   title={t('addVcButton', {
                     vcLabel: controller.vcLabel.singular,

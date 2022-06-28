@@ -2,56 +2,19 @@ import { formatDistanceToNow } from 'date-fns';
 import React from 'react';
 import * as DateFnsLocale from '../lib/date-fns/locale';
 import { useTranslation } from 'react-i18next';
-import { Image, StyleSheet, ImageBackground } from 'react-native';
+import { Image, ImageBackground } from 'react-native';
 import { Icon, ListItem } from 'react-native-elements';
 import { VC, CredentialSubject } from '../types/vc';
 import { Column, Row, Text } from './ui';
-import { Colors } from './ui/styleUtils';
+import {
+  Colors,
+  OpenCard,
+  ProfileIcon,
+  MosipLogo,
+  Styles,
+} from './ui/styleUtils';
 import { TextItem } from './ui/TextItem';
 import { useReceiveVcModal } from '../screens/Request/ReceiveVcModalController';
-
-const styles = StyleSheet.create({
-  successTag: {
-    backgroundColor: Colors.Green,
-    height: 43,
-    flex: 1,
-    alignItems: 'center',
-    paddingLeft: 6,
-  },
-  header: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingLeft: 18,
-    margin: 6,
-    // borderRadius: 0,
-    // borderWidth: 0,
-    // marginBottom: 0,
-  },
-  logo: {
-    height: 48,
-    width: 40,
-    marginRight: 10,
-  },
-  container: {
-    flex: 2,
-    padding: 10,
-  },
-  detailes: {
-    width: 290,
-    marginLeft: 110,
-    marginTop: 0,
-  },
-  labelPart: {
-    margin: 0,
-    borderRadius: 0,
-    borderWidth: 0,
-    width: 240,
-    borderBottomWidth: 0,
-    backgroundColor: 'transparent',
-  },
-});
 
 const VerifiedIcon: React.FC = () => {
   return (
@@ -74,8 +37,8 @@ export const NewVcDetails: React.FC<VcDetailsProps> = (props) => {
         width: '100%',
         height: '100%',
       }}
-      source={require('../assets/ID-open.png')}>
-      <Row style={styles.successTag}>
+      source={OpenCard}>
+      <Row style={Styles.successTag}>
         <Icon name="check-circle" color={Colors.White} size={40} />
         <Text margin="0 10" color={Colors.White}>
           {controller.vcLabel.singular} Received
@@ -83,9 +46,9 @@ export const NewVcDetails: React.FC<VcDetailsProps> = (props) => {
       </Row>
 
       <Column>
-        <Column style={styles.header}>
+        <Column style={Styles.closeDetailsHeader}>
           <Column>
-            <Text weight="bold" size="smaller" color={Colors.Orange}>
+            <Text weight="bold" size="smaller" color={Colors.DetailsText}>
               {t('fullName')}
             </Text>
             <Text weight="bold" size="smaller">
@@ -94,13 +57,10 @@ export const NewVcDetails: React.FC<VcDetailsProps> = (props) => {
               )}
             </Text>
           </Column>
-          <Image
-            source={require('../assets/mosip-logo.png')}
-            style={styles.logo}
-          />
+          <Image source={MosipLogo} style={Styles.logo} />
         </Column>
 
-        <Row style={styles.container}>
+        <Row style={Styles.openDetailsContainer}>
           <ListItem bottomDivider>
             <ListItem.Content>
               <ListItem.Subtitle>{t('photo')}</ListItem.Subtitle>
@@ -109,32 +69,24 @@ export const NewVcDetails: React.FC<VcDetailsProps> = (props) => {
                   source={
                     props.vc?.credential.biometrics?.face
                       ? { uri: props.vc?.credential.biometrics.face }
-                      : require('../assets/placeholder-photo.png')
+                      : ProfileIcon
                   }
-                  style={{
-                    width: 128,
-                    height: 180,
-                    resizeMode: 'cover',
-                    borderRadius: 5,
-                    marginTop: -25,
-                    marginLeft: -14,
-                    padding: 10,
-                  }}
+                  style={Styles.openCardImage}
                 />
               </ListItem.Content>
             </ListItem.Content>
           </ListItem>
 
-          <Column style={styles.detailes}>
-            <Column style={styles.labelPart}>
+          <Column style={Styles.details}>
+            <Column style={Styles.labelPart}>
               <Column
                 fill
                 padding="12 16"
                 margin="0 16 0 0"
-                style={styles.labelPart}>
+                style={Styles.labelPart}>
                 <Text
                   size="smaller"
-                  color={Colors.Orange}
+                  color={Colors.DetailsText}
                   style={{ textTransform: 'uppercase', fontWeight: 'bold' }}>
                   {props.vc?.idType}
                 </Text>
@@ -146,16 +98,16 @@ export const NewVcDetails: React.FC<VcDetailsProps> = (props) => {
                 fill
                 padding="12 16"
                 margin="0 16 0 0"
-                style={styles.labelPart}>
-                <Text weight="bold" size="smaller" color={Colors.Orange}>
+                style={Styles.labelPart}>
+                <Text weight="bold" size="smaller" color={Colors.DetailsText}>
                   {t('generatedOn')}
                 </Text>
                 <Text weight="semibold" size="smaller">
                   {new Date(props.vc?.generatedOn).toLocaleDateString()}
                 </Text>
               </Column>
-              <Column fill padding="12 16" style={styles.labelPart}>
-                <Text weight="bold" size="smaller" color={Colors.Orange}>
+              <Column fill padding="12 16" style={Styles.labelPart}>
+                <Text weight="bold" size="smaller" color={Colors.DetailsText}>
                   {t('status')}
                 </Text>
                 <Row>
@@ -171,8 +123,8 @@ export const NewVcDetails: React.FC<VcDetailsProps> = (props) => {
               fill
               padding="12 16"
               margin="0 16 0 0"
-              style={styles.labelPart}>
-              <Text weight="bold" size="smaller" color={Colors.Orange}>
+              style={Styles.labelPart}>
+              <Text weight="bold" size="smaller" color={Colors.DetailsText}>
                 {t('gender')}
               </Text>
               <Text weight="semibold" size="smaller">
@@ -186,14 +138,16 @@ export const NewVcDetails: React.FC<VcDetailsProps> = (props) => {
               fill
               padding="12 16"
               margin="0 16 0 0"
-              style={styles.labelPart}>
-              <Text weight="bold" size="smaller" color={Colors.Orange}>
+              style={Styles.labelPart}>
+              <Text weight="bold" size="smaller" color={Colors.DetailsText}>
                 {t('dateOfBirth')}
               </Text>
               <Text weight="semibold" size="smaller">
-                {getLocalizedField(
-                  props.vc?.verifiableCredential.credentialSubject.dateOfBirth
-                )}
+                {new Date(
+                  getLocalizedField(
+                    props.vc?.verifiableCredential.credentialSubject.dateOfBirth
+                  )
+                ).toLocaleDateString()}
               </Text>
             </Column>
 
@@ -201,8 +155,8 @@ export const NewVcDetails: React.FC<VcDetailsProps> = (props) => {
               fill
               padding="12 16"
               margin="0 16 0 0"
-              style={styles.labelPart}>
-              <Text weight="bold" size="smaller" color={Colors.Orange}>
+              style={Styles.labelPart}>
+              <Text weight="bold" size="smaller" color={Colors.DetailsText}>
                 {t('phoneNumber')}
               </Text>
               <Text weight="semibold" size="smaller">
@@ -216,8 +170,8 @@ export const NewVcDetails: React.FC<VcDetailsProps> = (props) => {
               fill
               padding="12 16"
               margin="0 16 0 0"
-              style={styles.labelPart}>
-              <Text weight="bold" size="smaller" color={Colors.Orange}>
+              style={Styles.labelPart}>
+              <Text weight="bold" size="smaller" color={Colors.DetailsText}>
                 {t('email')}
               </Text>
               <Text weight="semibold" size="smaller">
@@ -231,8 +185,8 @@ export const NewVcDetails: React.FC<VcDetailsProps> = (props) => {
               fill
               padding="12 16"
               margin="0 16 0 0"
-              style={styles.labelPart}>
-              <Text weight="bold" size="smaller" color={Colors.Orange}>
+              style={Styles.labelPart}>
+              <Text weight="bold" size="smaller" color={Colors.DetailsText}>
                 {t('address')}
               </Text>
               <Text weight="semibold" size="smaller">
