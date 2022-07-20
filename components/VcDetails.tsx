@@ -82,7 +82,9 @@ export const VcDetails: React.FC<VcDetailsProps> = (props) => {
       <TextItem
         divider
         label={t('fullName')}
-        text={props.vc?.verifiableCredential.credentialSubject.fullName}
+        text={getLocalizedField(
+          props.vc?.verifiableCredential.credentialSubject.fullName
+        )}
       />
 
       <TextItem
@@ -96,19 +98,25 @@ export const VcDetails: React.FC<VcDetailsProps> = (props) => {
       <TextItem
         divider
         label={t('dateOfBirth')}
-        text={props.vc?.verifiableCredential.credentialSubject.dateOfBirth}
+        text={getLocalizedField(
+          props.vc?.verifiableCredential.credentialSubject.dateOfBirth
+        )}
       />
 
       <TextItem
         divider
         label={t('phoneNumber')}
-        text={props.vc?.verifiableCredential.credentialSubject.phone}
+        text={getLocalizedField(
+          props.vc?.verifiableCredential.credentialSubject.phone
+        )}
       />
 
       <TextItem
         divider
         label={t('email')}
-        text={props.vc?.verifiableCredential.credentialSubject.email}
+        text={getLocalizedField(
+          props.vc?.verifiableCredential.credentialSubject.email
+        )}
       />
 
       <TextItem
@@ -168,10 +176,12 @@ function getFullAddress(credential: CredentialSubject) {
 }
 
 function getLocalizedField(rawField: string | LocalizedField) {
+  if (typeof rawField === 'string') {
+    return rawField;
+  }
   try {
-    const locales: LocalizedField[] =
-      typeof rawField === 'string' ? JSON.parse(rawField) : rawField;
-    return locales.find((locale) => locale.language === 'eng').value.trim();
+    const locales: LocalizedField[] = JSON.parse(JSON.stringify(rawField));
+    return locales[0].value;
   } catch (e) {
     return '';
   }

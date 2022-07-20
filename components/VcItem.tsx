@@ -95,7 +95,9 @@ export const VcItem: React.FC<VcItemProps> = (props) => {
             }>
             {!verifiableCredential
               ? ''
-              : verifiableCredential.credentialSubject.fullName +
+              : getLocalizedField(
+                  verifiableCredential.credentialSubject.fullName
+                ) +
                 ' · ' +
                 generatedOn}
           </Text>
@@ -116,4 +118,16 @@ interface VcItemProps {
   selectable?: boolean;
   selected?: boolean;
   onPress?: (vcRef?: ActorRefFrom<typeof vcItemMachine>) => void;
+}
+
+function getLocalizedField(rawField: string | LocalizedField) {
+  if (typeof rawField === 'string') {
+    return rawField;
+  }
+  try {
+    const locales: LocalizedField[] = JSON.parse(JSON.stringify(rawField));
+    return locales[0].value;
+  } catch (e) {
+    return '';
+  }
 }
