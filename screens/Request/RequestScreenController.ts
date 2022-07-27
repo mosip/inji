@@ -66,6 +66,9 @@ export function useRequestScreen({ navigation }: MainRouteProps) {
       if (state.matches('reviewing.navigatingToHome')) {
         navigation.navigate('Home', { activeTab: 1 });
       }
+      if (state.matches('reviewing.navigatingToTimeBasedRequest')) {
+        navigation.navigate('TimerBasedRequest');
+      }
     });
 
     return () => {
@@ -102,5 +105,6 @@ export function useRequestScreen({ navigation }: MainRouteProps) {
     ACCEPT: () => requestService.send(RequestEvents.ACCEPT()),
     REJECT: () => requestService.send(RequestEvents.REJECT()),
     REQUEST: () => requestService.send(RequestEvents.SCREEN_FOCUS()),
+    GOBACK: () => requestService.send(RequestEvents.GOBACK()),
   };
 }

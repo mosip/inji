@@ -11,6 +11,8 @@ import { ViewVcModal } from './ViewVcModal';
 import { useHomeScreen } from './HomeScreenController';
 import { TabRef } from './HomeScreenMachine';
 import { useTranslation } from 'react-i18next';
+import { ActorRefFrom } from 'xstate';
+import { vcItemMachine } from '../../machines/vcItem';
 
 const styles = StyleSheet.create({
   tabIndicator: {
@@ -45,13 +47,17 @@ export const HomeScreen: React.FC<HomeRouteProps> = (props) => {
             <MyVcsTab
               isVisible={controller.activeTab === 0}
               service={controller.tabRefs.myVcs}
+              vcItemActor={controller.selectedVc}
+              onSwipe={() => props.navigation.navigate('TimerBasedRequest')}
             />
             <ReceivedVcsTab
               isVisible={controller.activeTab === 1}
               service={controller.tabRefs.receivedVcs}
+              vcItemActor={controller.selectedVc}
             />
             <HistoryTab
               isVisible={controller.activeTab === 2}
+              vcItemActor={controller.selectedVc}
               service={controller.tabRefs.history}
             />
           </Column>
@@ -84,4 +90,6 @@ function TabItem(title: string) {
 export interface HomeScreenTabProps {
   isVisible: boolean;
   service: TabRef;
+  onSwipe?: () => void;
+  vcItemActor: ActorRefFrom<typeof vcItemMachine>;
 }

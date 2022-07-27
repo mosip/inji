@@ -28,6 +28,7 @@ const model = createModel(
       REJECT: () => ({}),
       CANCEL: () => ({}),
       DISMISS: () => ({}),
+      GOBACK: () => ({}),
       VC_RECEIVED: (vc: VC) => ({ vc }),
       RESPONSE_SENT: () => ({}),
       CONNECTED: () => ({}),
@@ -207,6 +208,7 @@ export const requestMachine = model.createMachine(
             },
             on: {
               DISMISS: 'navigatingToHome',
+              GOBACK: '#clearingConnection',
             },
           },
           rejected: {
@@ -221,6 +223,7 @@ export const requestMachine = model.createMachine(
             },
           },
           navigatingToHome: {},
+          navigatingToTimeBasedRequest: {},
         },
         exit: ['disconnect'],
       },

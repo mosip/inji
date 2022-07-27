@@ -556,7 +556,7 @@ export function selectCredential(state: State) {
 }
 
 export function selectVerifiableCredential(state: State) {
-  return state.context.verifiableCredential;
+  return state.context;
 }
 
 export function selectIsEditingTag(state: State) {

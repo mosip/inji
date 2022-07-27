@@ -4,13 +4,13 @@ import { TextEditOverlay } from '../../components/TextEditOverlay';
 import { Column } from '../../components/ui';
 import { Modal } from '../../components/ui/Modal';
 import { Colors } from '../../components/ui/styleUtils';
-import { VcDetails } from '../../components/VcDetails';
 import { MessageOverlay } from '../../components/MessageOverlay';
 import { ToastItem } from '../../components/ui/ToastItem';
 import { Passcode } from '../../components/Passcode';
 import { OtpVerificationModal } from './MyVcs/OtpVerificationModal';
 import { useViewVcModal, ViewVcModalProps } from './ViewVcModalController';
 import { useTranslation } from 'react-i18next';
+import { UpdatedVcDetails } from '../../components/UpdatedVcDetails';
 
 export const ViewVcModal: React.FC<ViewVcModalProps> = (props) => {
   const { t } = useTranslation('ViewVcModal');
@@ -25,9 +25,9 @@ export const ViewVcModal: React.FC<ViewVcModalProps> = (props) => {
       headerRight={
         <Icon name="edit" onPress={controller.EDIT_TAG} color={Colors.Orange} />
       }>
-      <Column scroll backgroundColor={Colors.LightGrey}>
-        <Column>
-          <VcDetails vc={controller.vc} />
+      <Column scroll>
+        <Column fill>
+          <UpdatedVcDetails vc={controller.vc} />
         </Column>
       </Column>
 

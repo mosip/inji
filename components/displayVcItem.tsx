@@ -103,7 +103,6 @@ export const VcItem: React.FC<VcItemProps> = (props) => {
                 generatedOn}
           </Text>
         </Column>
-
         {verifiableCredential ? (
           selectableOrCheck
         ) : (

@@ -9,12 +9,17 @@ export interface Typegen0 {
     removeLoggers:
       | 'SCREEN_BLUR'
       | 'xstate.after(CLEAR_DELAY)#clearingConnection'
-      | 'DISMISS';
+      | 'DISMISS'
+      | 'GOBACK';
     disconnect: '';
-    registerLoggers: 'xstate.after(CLEAR_DELAY)#clearingConnection' | 'DISMISS';
+    registerLoggers:
+      | 'xstate.after(CLEAR_DELAY)#clearingConnection'
+      | 'DISMISS'
+      | 'GOBACK';
     generateConnectionParams:
       | 'xstate.after(CLEAR_DELAY)#clearingConnection'
-      | 'DISMISS';
+      | 'DISMISS'
+      | 'GOBACK';
     requestReceiverInfo: 'CONNECTED';
     requestReceivedVcs: 'xstate.init';
     requestExistingVc: 'VC_RESPONSE';
@@ -84,6 +89,7 @@ export interface Typegen0 {
     | 'reviewing.accepted'
     | 'reviewing.rejected'
     | 'reviewing.navigatingToHome'
+    | 'reviewing.navigatingToTimeBasedRequest'
     | 'disconnected'
     | {
         checkingBluetoothService?: 'checking' | 'requesting' | 'enabled';
@@ -93,6 +99,7 @@ export interface Typegen0 {
           | 'accepted'
           | 'rejected'
           | 'navigatingToHome'
+          | 'navigatingToTimeBasedRequest'
           | {
               accepting?:
                 | 'requestingReceivedVcs'

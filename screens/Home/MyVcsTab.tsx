@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, Column, Text, Centered } from '../../components/ui';
-import { VcItem } from '../../components/VcItem';
 import { Icon } from 'react-native-elements';
 import { Colors } from '../../components/ui/styleUtils';
 import { RefreshControl } from 'react-native';
@@ -10,6 +9,8 @@ import { AddVcModal } from './MyVcs/AddVcModal';
 import { DownloadingVcModal } from './MyVcs/DownloadingVcModal';
 import { OnboardingOverlay } from './OnboardingOverlay';
 import { useTranslation } from 'react-i18next';
+import GestureRecognizer from 'react-native-swipe-gestures';
+import { UpdatedVcItem } from '../../components/UpdatedVcItem';
 
 export const MyVcsTab: React.FC<HomeScreenTabProps> = (props) => {
   const { t } = useTranslation('MyVcsTab');
@@ -30,7 +31,7 @@ export const MyVcsTab: React.FC<HomeScreenTabProps> = (props) => {
                   />
                 }>
                 {controller.vcKeys.map((vcKey) => (
-                  <VcItem
+                  <UpdatedVcItem
                     key={vcKey}
                     vcKey={vcKey}
                     margin="0 2 8 2"
@@ -38,16 +39,19 @@ export const MyVcsTab: React.FC<HomeScreenTabProps> = (props) => {
                   />
                 ))}
               </Column>
-              <Column elevation={2} margin="0 2">
-                <Button
-                  type="clear"
-                  disabled={controller.isRefreshingVcs}
-                  title={t('addVcButton', {
-                    vcLabel: controller.vcLabel.singular,
-                  })}
-                  onPress={controller.ADD_VC}
-                />
-              </Column>
+
+              <GestureRecognizer onSwipeLeft={props.onSwipe}>
+                <Column elevation={2} margin="0 2">
+                  <Button
+                    type="clear"
+                    disabled={controller.isRefreshingVcs}
+                    title={t('addVcButton', {
+                      vcLabel: controller.vcLabel.singular,
+                    })}
+                    onPress={controller.ADD_VC}
+                  />
+                </Column>
+              </GestureRecognizer>
             </React.Fragment>
           )}
           {controller.vcKeys.length === 0 && (
@@ -67,13 +71,16 @@ export const MyVcsTab: React.FC<HomeScreenTabProps> = (props) => {
                   color={Colors.Orange}
                 />
               </Centered>
-              <Button
-                disabled={controller.isRefreshingVcs}
-                title={t('addVcButton', {
-                  vcLabel: controller.vcLabel.singular,
-                })}
-                onPress={controller.ADD_VC}
-              />
+
+              <GestureRecognizer onSwipeLeft={props.onSwipe}>
+                <Button
+                  disabled={controller.isRefreshingVcs}
+                  title={t('addVcButton', {
+                    vcLabel: controller.vcLabel.singular,
+                  })}
+                  onPress={controller.ADD_VC}
+                />
+              </GestureRecognizer>
             </React.Fragment>
           )}
         </Column>
