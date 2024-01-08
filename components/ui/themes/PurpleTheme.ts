@@ -1078,6 +1078,9 @@ export const PurpleTheme = {
       borderRadius: 10,
       backgroundColor: Colors.Purple,
     },
+    plain: {
+      backgroundColor: Colors.Transparent,
+    },
   }),
   OIDCAuthStyles: StyleSheet.create({
     viewContainer: {
@@ -1488,13 +1491,6 @@ export const PurpleTheme = {
       rowGap: 8,
     },
   }),
-  SendVcScreenStyles: StyleSheet.create({
-    shareOptionButtonsContainer: {
-      marginBottom: 1,
-      marginTop: 1,
-      rowGap: 8,
-    },
-  }),
   ErrorStyles: StyleSheet.create({
     image: {marginTop: -60, paddingBottom: 26},
     title: {
@@ -1581,7 +1577,7 @@ export const PurpleTheme = {
     // https://ethercreative.github.io/react-native-shadow-generator/
 
     if (level === 0) {
-      return null;
+      return {};
     }
 
     const index = level - 1;
