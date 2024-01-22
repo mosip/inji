@@ -175,6 +175,7 @@ fileignoreconfig:
     checksum: e465a9947727687d784d0cb9d8db1e28f765b0659bf4a3aa6d75643aa7b14102
   - filename: components/ActivityLogEvent.ts
     checksum: e7c8617cd9c510d5b6a053bc5c6164f02c48e85125aa925e0c4cf55cd1f29d22
+<<<<<<< HEAD
   - filename: shared/storage.ts
     checksum: 357f6b6b41cb80e2df749ba6ea020404ff70d3991f56e19f6ce5e1be47ad6115
   - filename: shared/constants.ts
@@ -211,4 +212,6 @@ fileignoreconfig:
     checksum: 1a15e4327b358ffee8bddfe412a38873ad6d4414d2b1d6bffd3c1782f5ec852f  
   - filename: screens/Home/IntroSlidersScreen.tsx
     checksum: 9880724461b194db7651737576ad2fd2db9cf3b4e732747f59be422a7ff4e4a1
+  - filename: jest.setup.js
+    checksum: 2576884c00d7f90f20d4f9c5f1ec9ee97f4c41a2d9d37a649eaf26bfc2c01a50
     version: ""

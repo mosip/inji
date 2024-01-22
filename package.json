@@ -91,7 +91,9 @@
     "short-unique-id": "^4.4.4",
     "simple-pem2jwk": "^0.2.4",
     "telemetry-sdk": "git://github.com/mosip/sunbird-telemetry-sdk.git#f762be5732ee552c0c70bdd540aa4e2701554c71",
-    "xstate": "^4.35.0"
+    "xstate": "^4.35.0",
+    "jest-expo": "~49.0.0",
+    "jest": "^29.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

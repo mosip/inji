@@ -23,6 +23,6 @@ module.exports = {
   // Not quite sure about the reason.
   testRegex: '(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$',
   transformIgnorePatterns: [
-    '/node_modules/(?!(@react-native|react-native)/).*/',
+    '/node_modules/(?!(@react-native|react-native|react-native-argon2|@react-navigation|react-native-elements|react-native-size-matters|react-native-ratings|expo-constants)/).*/',
   ],
 };
