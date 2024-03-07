@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "module": "CommonJS"
+    "jsx": "react"
   },
   "includes": ["src/**/*.spec.ts"],
   "exclude": ["e2e", "examples", "website"],
