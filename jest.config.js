@@ -2,7 +2,7 @@
 const {defaults: tsjPreset} = require('ts-jest/presets');
 module.exports = {
   ...tsjPreset,
-  preset: 'react-native',
+  preset: 'jest-expo',
   setupFilesAfterEnv: ['@testing-library/jest-native/extend-expect'],
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '\\.snap$'],
   cacheDirectory: '.jest/cache',
@@ -28,7 +28,8 @@ module.exports = {
   // Not quite sure about the reason.
   testRegex: '(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$',
   transformIgnorePatterns: [
-    '/node_modules/(?!(@react-native|react-native|react-native-argon2|@react-navigation|react-native-elements|react-native-size-matters|react-native-ratings|expo-constants|base58-universal|@react-native-*)/).*/',
+    'node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg)',
+    'node_modules/(?!(@react-native|react-native|react-native-argon2|@react-navigation|react-native-elements|react-native-size-matters|react-native-ratings|expo-constants|base58-universal|@react-native-*|react-native-google-signin|react-native-linear-gradient|expo-camera|base58-universal/*)/).*/',
     'node_modules/(?!(react-native|@react-native|react-native-biometrics-changed|base58-universal)/)',
   ],
   setupFiles: [
@@ -36,6 +37,8 @@ module.exports = {
     '<rootDir>/__mocks__/expo-constants.mock.js',
     '<rootDir>/__mocks__/react-native-argon2.mock.js',
     '<rootDir>/__mocks__/jest.setup.js',
+    // https://github.com/react-native-google-signin/google-signin?tab=readme-ov-file#jest-module-mock
+    '<rootDir>/node_modules/@react-native-google-signin/google-signin/jest/build/setup.js',
   ],
   // TODO: enable this to also collect coverage
   collectCoverage: false,

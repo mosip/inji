@@ -10,6 +10,5 @@
     "custom.d.ts",
     "./types/react-native-dotenv/index.d.ts",
     "./types/react-native-argon2/index.d.ts",
-    "./__mocks__/@react-native-google-signin/google-signin.tsx"
   ]
 }

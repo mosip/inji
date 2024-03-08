@@ -4,13 +4,17 @@ import App from '../App';
 
 jest.mock('react-native-argon2');
 
-jest.mock('@react-native-google-signin/google-signin');
-
 jest.mock('@mosip/tuvali');
 
 jest.mock('react-native-bluetooth-state-manager');
 
 jest.mock('react-native-permissions');
+
+jest.mock('react-native-linear-gradient', () => (LinearGradient = jest.fn()));
+
+jest.mock('expo-camera', () => (Camera = jest.fn()));
+
+jest.mock('base58-universal/main', () => require('../__mocks__/base58-universal-main.js'));
 
 describe('<App />', () => {
   it('has 1 child', () => {

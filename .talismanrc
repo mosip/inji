@@ -2,7 +2,11 @@ fileignoreconfig:
   - filename: package.json
     checksum: 730263252adbe53cde58fb0b6988e519e766fe0f89a7b8cd261a1e5e5e598328
   - filename: package-lock.json
+<<<<<<< HEAD
     checksum: b018f6e214d4f1573c587d773984f2b10765b62100293b240cb48e724d9b0158
+=======
+    checksum: 19bcc7fce489f4cd4b2c3636e183ee74dd71a74af685f8aa7ea1812461a106f1
+>>>>>>> d21219b4 ([INJIMOB-314]: use defined mock from google-signin lib)
   - filename: lib/jsonld-signatures/suites/ed255192018/ed25519.ts
     checksum: 493b6e31144116cb612c24d98b97d8adcad5609c0a52c865a6847ced0a0ddc3a
   - filename: components/PasscodeVerify.tsx
@@ -214,4 +218,10 @@ fileignoreconfig:
     checksum: 9880724461b194db7651737576ad2fd2db9cf3b4e732747f59be422a7ff4e4a1
   - filename: jest.setup.js
     checksum: 2576884c00d7f90f20d4f9c5f1ec9ee97f4c41a2d9d37a649eaf26bfc2c01a50
+  - filename: __mocks__/react-native-keychain.mock.js
+    checksum: 22b7606aefa17a8fb2924ed792daa038e45d9c58d08e55a20f096e469fd9b4cd  
+  - filename: __mocks__/react-native-rsa-native.mock.js
+    checksum: f5a4254f4d172107231a51ce0968ef1ad7ab0b8f0b5a4db72d1d5bc4e9ce179a  
+  - filename: __mocks__/react-native-secure-key-store.mock.js
+    checksum: 249eeeb9f8cf083f8d008882a5aeab194e9e6344f68732a2a8c78a69ff5f2ee8  
     version: ""
