@@ -2,6 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {HomeScreenLayout} from '../screens/HomeScreenLayout';
 
+/*
 jest.mock('@react-navigation/native-stack');
 
 jest.mock('expo-constants', () => require('../__mocks__/expo-constants.mock'));
@@ -16,10 +17,6 @@ jest.mock('react-native-securerandom', () =>
 
 jest.mock('react-native-keychain', () =>
   require('../__mocks__/react-native-keychain.mock'),
-);
-
-jest.mock('react-native-mmkv-storage', () =>
-  require('../__mocks__/react-native-mmkv-storage.mock.js'),
 );
 
 jest.mock('telemetry-sdk', () => require('../__mocks__/telemetry-sdk.mock'));
@@ -54,6 +51,7 @@ jest.mock('@mosip/tuvali');
 
 jest.mock('react-native-permissions');
 
+*/
 describe('<HomeScreenLayout />', () => {
   it('Testing the HomeScreenLayout component', () => {
     // Render the component

@@ -2,6 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {HomeScreen} from '../screens/Home/HomeScreen';
 
+/*
 jest.mock('react-native', () => require('../__mocks__/react-native.mock'));
 
 jest.mock('expo-constants', () => require('../__mocks__/expo-constants.mock'));
@@ -18,9 +19,6 @@ jest.mock('expo-local-authentication', () =>
   require('../__mocks__/expo-local-authentication.mock'),
 );
 
-jest.mock('react-native-mmkv-storage', () =>
-  require('../__mocks__/react-native-mmkv-storage.mock.js'),
-);
 
 jest.mock('react-native-rsa-native', () =>
   require('../__mocks__/react-native-rsa-native.mock'),
@@ -63,6 +61,7 @@ jest.mock('@react-native-community/netinfo');
 jest.mock('@mosip/tuvali');
 
 jest.mock('react-native-permissions');
+*/
 
 describe('<HomeScreen />', () => {
   it('Testing the HomeScreen component', () => {
