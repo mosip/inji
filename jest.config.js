@@ -38,6 +38,7 @@ module.exports = {
     '<rootDir>/__mocks__/react-native.mock.js',
     '<rootDir>/__mocks__/expo-constants.mock.js',
     '<rootDir>/node_modules/react-native-mmkv-storage/jest/mmkvJestSetup.js',
+    '<rootDir>/node_modules/@react-native-community/netinfo/jest/netinfo-mock.js',
     '<rootDir>/__mocks__/react-native-argon2.mock.js',
     // https://github.com/react-native-google-signin/google-signin?tab=readme-ov-file#jest-module-mock
     '<rootDir>/node_modules/@react-native-google-signin/google-signin/jest/build/setup.js',

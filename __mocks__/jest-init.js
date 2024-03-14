@@ -6,6 +6,8 @@ import mockRNLocalize from 'react-native-localize.mock';
 import mockGenSecureRandom from 'react-native-securerandom.mock';
 import mockReactNativeKeychain from 'react-native-keychain.mock';
 import mockRNSecureKeyStore from 'react-native-secure-key-store.mock';
+import mockClipboard from '@react-native-clipboard/clipboard/jest/clipboard-mock.js';
+import mockLocalization from 'expo-localization.mock';
 
 jest.mock('react-native-device-info', () => mockRNDeviceInfo);
 jest.mock('react-native', () => require('react-native.mock.js'));
@@ -26,12 +28,12 @@ jest.mock('telemetry-sdk', () => require('telemetry-sdk.mock.js'));
 
 jest.mock('react-native-localize', () => mockRNLocalize);
 
-jest.mock('expo-localization', () => require('expo-localization.mock.js'));
+jest.mock('expo-localization', () => mockLocalization);
 
 // jest.mock('./locales/en.json', () => require('en.mock.json'));
 
 jest.mock('iso-639-3', () => {
-  iso6393To1: jest.fn();
+  iso6393To1: () => require('iso-639-3/iso6393-to-1');
 });
 
 jest.mock('react-native-keychain', () => mockReactNativeKeychain);
@@ -61,3 +63,4 @@ jest.mock('expo-camera', () => {
 });
 
 jest.mock('base58-universal/main', () => require('base58-universal-main.js'));
+jest.mock('@react-native-clipboard/clipboard', () => mockClipboard);

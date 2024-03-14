@@ -1,7 +1,6 @@
-const mockLocalization = require('expo-localization');
-
-// Customize the mock implementation as needed
 const mockedLocale = 'en-US';
-mockLocalization.locale = mockedLocale;
-
+const mockLocalization = {
+  locale: mockedLocale,
+};
+// Customize the mock implementation as needed
 export default mockLocalization;

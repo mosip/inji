@@ -2,11 +2,7 @@ fileignoreconfig:
   - filename: package.json
     checksum: 730263252adbe53cde58fb0b6988e519e766fe0f89a7b8cd261a1e5e5e598328
   - filename: package-lock.json
-<<<<<<< HEAD
-    checksum: b018f6e214d4f1573c587d773984f2b10765b62100293b240cb48e724d9b0158
-=======
     checksum: 19bcc7fce489f4cd4b2c3636e183ee74dd71a74af685f8aa7ea1812461a106f1
->>>>>>> d21219b4 ([INJIMOB-314]: use defined mock from google-signin lib)
   - filename: lib/jsonld-signatures/suites/ed255192018/ed25519.ts
     checksum: 493b6e31144116cb612c24d98b97d8adcad5609c0a52c865a6847ced0a0ddc3a
   - filename: components/PasscodeVerify.tsx
@@ -163,6 +159,8 @@ fileignoreconfig:
     checksum: a98ff1a0dd96d3ead4b8191320be8b0c7a558cda6b0de39f1c62aaa8efef9fb8
   - filename: components/HelpScreen.tsx
     checksum: bbc69143bd37d065bba3800396301db5a0318e8b7ba51ecd49142dda68783a01  
+  - filename: machines/backupRestore.ts
+    checksum: bbc69143bd37d065bba3800396301db5a0318e8b7ba51ecd49142dda68783a01
   - filename: injitest/README.md
     checksum: 82974a6b9363512472272245e9b433f92e63377e58ba306980876b745181a09c
   - filename: shared/VCMetadata.ts
@@ -179,7 +177,6 @@ fileignoreconfig:
     checksum: e465a9947727687d784d0cb9d8db1e28f765b0659bf4a3aa6d75643aa7b14102
   - filename: components/ActivityLogEvent.ts
     checksum: e7c8617cd9c510d5b6a053bc5c6164f02c48e85125aa925e0c4cf55cd1f29d22
-<<<<<<< HEAD
   - filename: shared/storage.ts
     checksum: 357f6b6b41cb80e2df749ba6ea020404ff70d3991f56e19f6ce5e1be47ad6115
   - filename: shared/constants.ts
@@ -226,4 +223,6 @@ fileignoreconfig:
     checksum: 32d0296b665e6381bd254cee4aa8729ae0abe0830e4618a349192ccd88d78bb2
   - filename: __mocks__/jest-init.js
     checksum: b6daac27bcde26196d596601b32b6b560823172f0b5d35a456457e0d5c733438
+  - filename: components/ActivityLogEvent.test.ts
+    checksum: 5f9bf6d499106863fee65476adcec9253638d093bf0b58f1a11225915e9b0560
     version: ""
