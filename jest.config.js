@@ -30,11 +30,10 @@ module.exports = {
   transformIgnorePatterns: [
     'node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg)',
     'node_modules/(?!(@react-native|react-native|react-native-argon2|@react-navigation|react-native-elements|react-native-size-matters|react-native-ratings|expo-constants|base58-universal|@react-native-*|react-native-google-signin|react-native-linear-gradient|expo-camera|base58-universal/*|react-native-*)/).*/',
-    'node_modules/(?!(react-native|@react-native|react-native-biometrics-changed|base58-universal)/)',
-    '/!node_modules\\/react-native-mmkv-storage/',
   ],
   setupFiles: [
     '<rootDir>/__mocks__/jest-init.js',
+    '<rootDir>/__mocks__/mmkv-db-setup.js',
     '<rootDir>/__mocks__/react-native.mock.js',
     '<rootDir>/__mocks__/expo-constants.mock.js',
     '<rootDir>/node_modules/react-native-mmkv-storage/jest/mmkvJestSetup.js',

@@ -219,10 +219,12 @@ fileignoreconfig:
     checksum: f5a4254f4d172107231a51ce0968ef1ad7ab0b8f0b5a4db72d1d5bc4e9ce179a  
   - filename: __mocks__/react-native-secure-key-store.mock.js
     checksum: 249eeeb9f8cf083f8d008882a5aeab194e9e6344f68732a2a8c78a69ff5f2ee8  
-  - filename: __mocks__/react-native-keychain.mock.js
-    checksum: 32d0296b665e6381bd254cee4aa8729ae0abe0830e4618a349192ccd88d78bb2
   - filename: __mocks__/jest-init.js
     checksum: b6daac27bcde26196d596601b32b6b560823172f0b5d35a456457e0d5c733438
   - filename: components/ActivityLogEvent.test.ts
     checksum: 5f9bf6d499106863fee65476adcec9253638d093bf0b58f1a11225915e9b0560
+  - filename: __mocks__/mmkv-db-setup.js
+    checksum: b94da7e4bc1bd52b5f0131104fcf25163df9cdb9af14425287d17fd56f4f09e3
+  - filename: __mocks__/react-native-keychain.mock.js
+    checksum: cc2798f843b776e70d957a4f7cdf47e199a29d9f6547fb9f59753108e8f252fa
     version: ""

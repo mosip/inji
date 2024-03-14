@@ -10,7 +10,7 @@ import mockClipboard from '@react-native-clipboard/clipboard/jest/clipboard-mock
 import mockLocalization from 'expo-localization.mock';
 
 jest.mock('react-native-device-info', () => mockRNDeviceInfo);
-jest.mock('react-native', () => require('react-native.mock.js'));
+jest.mock('react-native', () => require('react-native.mock'));
 
 jest.mock('expo-constants', () => mockedConstants);
 
@@ -21,10 +21,10 @@ jest.mock('react-native-securerandom', () => mockGenSecureRandom);
 jest.mock('expo-local-authentication', () => mockLocalAuthentication);
 
 jest.mock('react-native-rsa-native', () =>
-  require('react-native-rsa-native.mock.js'),
+  require('react-native-rsa-native.mock'),
 );
 
-jest.mock('telemetry-sdk', () => require('telemetry-sdk.mock.js'));
+jest.mock('telemetry-sdk', () => require('telemetry-sdk.mock'));
 
 jest.mock('react-native-localize', () => mockRNLocalize);
 
@@ -42,10 +42,6 @@ jest.mock('react-native-secure-key-store', () => mockRNSecureKeyStore);
 
 jest.mock('react-native-fs', () => require('react-native-fs.mock'));
 
-jest.mock('react-native-zip-archive', () =>
-  require('react-native-zip-archive.mock'),
-);
-
 jest.mock('react-native-biometrics-changed');
 
 jest.mock('@react-navigation/native');
@@ -59,8 +55,46 @@ jest.mock('react-native-permissions');
 jest.mock('react-native-linear-gradient', () => (LinearGradient = jest.fn()));
 
 jest.mock('expo-camera', () => {
-  Camera = jest.fn();
+  return {
+    Camera: {
+      Constants: {
+        Type: {front: 0, back: 1},
+      },
+    },
+    CameraCapturedPicture: jest.fn(),
+    PermissionResponse: jest.fn(),
+    ImageType: jest.fn(),
+    Face: jest.fn(),
+    CameraType: jest.fn(),
+  };
 });
 
-jest.mock('base58-universal/main', () => require('base58-universal-main.js'));
+jest.mock('base58-universal/main', () => require('base58-universal-main'));
 jest.mock('@react-native-clipboard/clipboard', () => mockClipboard);
+jest.mock('react-native-mmkv-storage', () => (MMKVLoader = jest.fn()));
+jest.mock(
+  'react-native-shimmer-placeholder',
+  () => (ShimmerPlaceHolder = jest.fn()),
+);
+jest.mock(
+  'expo-camera/build/Camera.types',
+  () => (
+    (CameraType = jest.requireActual()),
+    (Face = jest.fn()),
+    (ImageType = jest.fn())
+  ),
+);
+jest.mock(
+  'react-native-app-auth',
+  () => ((authorize = jest.fn()), (AuthorizeResult = jest.fn())),
+);
+jest.mock(
+  'react-native-vector-icons/MaterialCommunityIcons',
+  () => (Icon = jest.fn()),
+);
+jest.mock('react-native-qrcode-svg', () => (QRCode = jest.fn()));
+jest.mock('react-native-spinkit', () => (Spinner = jest.fn()));
+jest.mock(
+  'react-native-zip-archive',
+  () => ((zip = jest.fn()), (unzip = jest.fn())),
+);
