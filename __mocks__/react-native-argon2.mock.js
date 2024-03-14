@@ -1,6 +1,7 @@
-const mockArgon2 = jest.fn();
-
-mockArgon2.hash = jest.fn();
-mockArgon2.verify = jest.fn();
+const mockArgon2 = jest.fn().mockResolvedValue({
+  hash: jest.fn(),
+  verify: jest.fn(),
+  rawHash: 'mockedRawHashValue',
+});
 
 export default mockArgon2;

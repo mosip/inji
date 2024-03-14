@@ -2,13 +2,13 @@ fileignoreconfig:
   - filename: package.json
     checksum: 730263252adbe53cde58fb0b6988e519e766fe0f89a7b8cd261a1e5e5e598328
   - filename: package-lock.json
-    checksum: 19bcc7fce489f4cd4b2c3636e183ee74dd71a74af685f8aa7ea1812461a106f1
+    checksum: 06a8f84e786b37c1e3697ac6d719a491bc628c1365d8a6d82d4b99c78cdfc3bd
   - filename: lib/jsonld-signatures/suites/ed255192018/ed25519.ts
     checksum: 493b6e31144116cb612c24d98b97d8adcad5609c0a52c865a6847ced0a0ddc3a
   - filename: components/PasscodeVerify.tsx
     checksum: 14654c0f038979fcd0d260170a45894a072f81e0767ca9a0e66935d33b5cc703
   - filename: i18n.ts
-    checksum: 4af6370d4557b780f9a29590db91c3e5544a432e272afee6d21a0cabc2faaff0
+    checksum: e80d40f33692c195d034774d024cafdf63d010ac6d4a35f94b2a5d81b78c234b
   - filename: components/Passcode.tsx
     checksum: db4a18001be8c63bf7ffb389359861401fa1d22261b10ad729a76fd431c019a7
   - filename: components/PasscodeVerify.tsx
@@ -227,4 +227,8 @@ fileignoreconfig:
     checksum: b94da7e4bc1bd52b5f0131104fcf25163df9cdb9af14425287d17fd56f4f09e3
   - filename: __mocks__/react-native-keychain.mock.js
     checksum: cc2798f843b776e70d957a4f7cdf47e199a29d9f6547fb9f59753108e8f252fa
+  - filename: machines/auth.ts
+    checksum: 46195ee93f9b7ac6794a06eeef5dee5ea242047a557af8bf95df04e1343d7b9e 
+  - filename: shared/commonUtil.generated.test.ts
+    checksum: 4ca5983bb133f8f02bfd52fd0cc49ce37b24b164f3ca78a03ad97bb353ed00a4 
     version: ""

@@ -180,7 +180,7 @@ export const authMachine = model.createMachine(
       downloadFaceSdkModel: () => () => {
         downloadModel();
       },
-      generatePasscodeSalt: () => async context => {
+      generatePasscodeSalt: () => async () => {
         const randomBytes = await generateSecureRandom(16);
         return binaryToBase64(randomBytes) as string;
       },
