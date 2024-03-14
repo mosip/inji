@@ -72,8 +72,8 @@ describe('testIDProps', () => {
     expect(testIDProps).toBeDefined();
   });
 
-  it('testIDProps should return expected output', () => {
-    const id = 'test id props';
+  it('testIDProps should return object with testID ', () => {
+    const id = 'unitTest';
     const testID = testIDProps(id);
     expect(typeof testID).toBe('object');
   });
@@ -85,8 +85,8 @@ describe('removeWhiteSpace', () => {
   });
 
   it('removeWhiteSpace should return string with out white space', () => {
-    const response = removeWhiteSpace('React native unit testing');
-    expect(response).toBe('Reactnativeunittesting');
+    const response = removeWhiteSpace('React Native Unit Testing');
+    expect(response).toBe('ReactNativeUnitTesting');
   });
 });
 
@@ -106,7 +106,7 @@ describe('getMaskedText', () => {
     expect(getMaskedText).toBeDefined();
   });
 
-  it('getMaskedText should return expected output', () => {
+  it('getMaskedText should return MaskedText', () => {
     const id = '1234567890';
     const maskedTxt = getMaskedText(id);
     expect(maskedTxt).toBe('******7890');
@@ -129,7 +129,7 @@ describe('getBackupFileName', () => {
     expect(getBackupFileName).toBeDefined();
   });
 
-  it('getBackupFileName should return expected output', () => {
+  it('getBackupFileName should return FileName with date as suffix', () => {
     const FileName = getBackupFileName();
     expect(typeof FileName).toBe('string');
   });
@@ -140,7 +140,7 @@ describe('bytesToMB', () => {
     expect(bytesToMB).toBeDefined();
   });
 
-  it('bytesToMB should return expected output', () => {
+  it('bytesToMB should return 0 or MB', () => {
     const value = bytesToMB(100);
     const BYTES_IN_MEGABYTE = 1000 * 1000;
     const megabytes = 100 / BYTES_IN_MEGABYTE;
@@ -154,21 +154,22 @@ describe('getDriveName', () => {
     expect(getDriveName).toBeDefined();
   });
 
-  it('getDriveName should return expected output', () => {
+  it('getDriveName should return iCloud or Google Drive', () => {
     const driveName = getDriveName();
-    expect(typeof driveName).toBe('string');
+    expect(driveName).toMatch(/^(iCloud|Google Drive)$/);
   });
 });
 
-describe('sleep', () => {
+describe('sleep : The promise resolves after a certain time', () => {
   it('should expose a function', () => {
     expect(sleep).toBeDefined();
   });
 
-  // it('sleep should return expected output', () => {
-  //   // const retValue = sleep(time);
-  //   expect(false).toBeTruthy();
-  // });
+  it('Should resolve after a certain time', () => {
+    const time = 100;
+    const promise = sleep(time);
+    expect(promise).toBeInstanceOf(Promise);
+  });
 });
 
 describe('getScreenHeight', () => {
