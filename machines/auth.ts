@@ -220,11 +220,11 @@ export function selectPasscodeSalt(state: State) {
 }
 
 export function selectBiometrics(state: State) {
-  return state.context.biometrics;
+  return state?.context?.biometrics;
 }
 
 export function selectCanUseBiometrics(state: State) {
-  return state.context.canUseBiometrics;
+  return state?.context?.canUseBiometrics;
 }
 
 export function selectAuthorized(state: State) {

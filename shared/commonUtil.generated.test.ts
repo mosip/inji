@@ -14,20 +14,6 @@ import testIDProps, {
   sleep,
 } from './commonUtil';
 import {argon2iConfig} from './constants';
-import React from 'react';
-
-jest.mock('react', () => ({
-  ...jest.requireActual('react'),
-  useState: jest.fn(),
-  useEffect: jest.fn(),
-}));
-
-useState.mockReturnValue([0, jest.fn()]);
-
-const mockUseEffect = jest.spyOn(React, 'useEffect');
-
-// Set up a mock implementation for useEffect
-mockUseEffect.mockImplementation(() => {});
 
 describe('hashData', () => {
   it('should expose a function', () => {

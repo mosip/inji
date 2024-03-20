@@ -28,20 +28,18 @@ import {
 } from '../../machines/biometrics';
 import {GlobalContext} from '../../shared/GlobalContext';
 import {useTranslation} from 'react-i18next';
-import {Platform} from 'react-native';
 import {RequestRouteProps, RootRouteProps} from '../../routes';
 import {REQUEST_ROUTES} from '../../routes/routesConstants';
-import {isIOS} from '../../shared/constants';
 
 export function useSettingsScreen(props: RootRouteProps & RequestRouteProps) {
   const {appService} = useContext(GlobalContext);
-  const authService = appService.children.get('auth');
-  const settingsService = appService.children.get('settings');
+  const authService = appService?.children?.get('auth');
+  const settingsService = appService?.children?.get('settings');
 
   const [isVisible, setIsVisible] = useState(false);
 
   const [alertMsg, setHasAlertMsg] = useState('');
-  const authBiometrics = useSelector(authService, selectBiometrics);
+  const authBiometrics = useSelector(authService || {}, selectBiometrics);
   const [biometricState, biometricSend, bioService] =
     useMachine(biometricsMachine);
   const passcode = useSelector(authService, selectPasscode);
@@ -110,21 +108,24 @@ export function useSettingsScreen(props: RootRouteProps & RequestRouteProps) {
     hideAlert,
     isPasscodeSet,
     isSettingUp,
-    appId: useSelector(settingsService, selectAppId),
-    name: useSelector(settingsService, selectName),
-    vcLabel: useSelector(settingsService, selectVcLabel),
-    credentialRegistry: useSelector(settingsService, selectCredentialRegistry),
-    esignetHostUrl: useSelector(settingsService, selectEsignetHostUrl),
+    appId: useSelector(settingsService || {}, selectAppId),
+    name: useSelector(settingsService || {}, selectName),
+    vcLabel: useSelector(settingsService || {}, selectVcLabel),
+    credentialRegistry: useSelector(settingsService || {}, selectCredentialRegistry),
+    esignetHostUrl: useSelector(settingsService || {}, selectEsignetHostUrl),
     credentialRegistryResponse: useSelector(
-      settingsService,
+      settingsService || {},
       selectCredentialRegistryResponse,
     ),
     isBiometricUnlockEnabled: useSelector(
-      settingsService,
+      settingsService || {},
       selectBiometricUnlockEnabled,
     ),
-    isResetInjiProps: useSelector(settingsService, selectIsResetInjiProps),
-    canUseBiometrics: useSelector(authService, selectCanUseBiometrics),
+    isResetInjiProps: useSelector(
+      settingsService || {},
+      selectIsResetInjiProps,
+    ),
+    canUseBiometrics: useSelector(authService || {}, selectCanUseBiometrics),
     useBiometrics,
 
     UPDATE_NAME: (name: string) =>

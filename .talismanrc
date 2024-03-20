@@ -220,7 +220,7 @@ fileignoreconfig:
   - filename: __mocks__/react-native-secure-key-store.mock.js
     checksum: 249eeeb9f8cf083f8d008882a5aeab194e9e6344f68732a2a8c78a69ff5f2ee8  
   - filename: __mocks__/jest-init.js
-    checksum: b6daac27bcde26196d596601b32b6b560823172f0b5d35a456457e0d5c733438
+    checksum: 7cec36ae248f04fe50235f1281be455351002acbb6fdc881ad327a30b86ba5e5
   - filename: components/ActivityLogEvent.test.ts
     checksum: 5f9bf6d499106863fee65476adcec9253638d093bf0b58f1a11225915e9b0560
   - filename: __mocks__/mmkv-db-setup.js
