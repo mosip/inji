@@ -2,7 +2,7 @@ fileignoreconfig:
   - filename: package.json
     checksum: 730263252adbe53cde58fb0b6988e519e766fe0f89a7b8cd261a1e5e5e598328
   - filename: package-lock.json
-    checksum: 06a8f84e786b37c1e3697ac6d719a491bc628c1365d8a6d82d4b99c78cdfc3bd
+    checksum: 3099005e4204e868de8df7f6ec1d5e4f87ad1dc6c672e363ef8db66e18330026
   - filename: lib/jsonld-signatures/suites/ed255192018/ed25519.ts
     checksum: 493b6e31144116cb612c24d98b97d8adcad5609c0a52c865a6847ced0a0ddc3a
   - filename: components/PasscodeVerify.tsx
@@ -158,7 +158,7 @@ fileignoreconfig:
   - filename: components/BannerNotificationContainer.tsx
     checksum: a98ff1a0dd96d3ead4b8191320be8b0c7a558cda6b0de39f1c62aaa8efef9fb8
   - filename: components/HelpScreen.tsx
-    checksum: bbc69143bd37d065bba3800396301db5a0318e8b7ba51ecd49142dda68783a01  
+    checksum: bbc69143bd37d065bba3800396301db5a0318e8b7ba51ecd49142dda68783a01
   - filename: machines/backupRestore.ts
     checksum: bbc69143bd37d065bba3800396301db5a0318e8b7ba51ecd49142dda68783a01
   - filename: injitest/README.md
@@ -231,4 +231,6 @@ fileignoreconfig:
     checksum: 46195ee93f9b7ac6794a06eeef5dee5ea242047a557af8bf95df04e1343d7b9e 
   - filename: shared/commonUtil.generated.test.ts
     checksum: 4ca5983bb133f8f02bfd52fd0cc49ce37b24b164f3ca78a03ad97bb353ed00a4 
+  - filename: __mocks__/en.mock.json
+    checksum: b34340a3f40c691f06698f7758b8c068a09ed7215098a0d11baed191c0972e04
     version: ""

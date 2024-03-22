@@ -59,7 +59,7 @@ module.exports = {
   coverageDirectory: 'coverage',
   moduleNameMapper: {
     // https://stackoverflow.com/a/54513338
-    '\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+    '\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       '<rootDir>/__mocks__/fileMock.js',
     '^\\.\\/locales\\/en\\.json$': '<rootDir>/__mocks__/en.mock.json',
     '^@digitalbazaar/rsa-verification-key-2018$':
