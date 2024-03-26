@@ -112,26 +112,17 @@ describe('faceMatchConfig', () => {
 
 describe('getBackupFileName', () => {
   it('should expose a function', () => {
-    expect(getBackupFileName).toBeDefined();
-  });
-
-  it('getBackupFileName should return FileName with date as suffix', () => {
-    const FileName = getBackupFileName();
-    expect(typeof FileName).toBe('string');
+    expect(getBackupFileName()).toMatch('backup_');
   });
 });
 
 describe('bytesToMB', () => {
-  it('should expose a function', () => {
-    expect(bytesToMB).toBeDefined();
+  it('bytesToMB returns a string', () => {
+    expect(bytesToMB(0)).toBe('0');
   });
 
-  it('bytesToMB should return 0 or MB', () => {
-    const value = bytesToMB(100);
-    const BYTES_IN_MEGABYTE = 1000 * 1000;
-    const megabytes = 100 / BYTES_IN_MEGABYTE;
-
-    expect(value).toBe(Number(megabytes).toFixed(2));
+  it('10^6 bytes is 1MB', () => {
+    expect(bytesToMB(1e6)).toBe('1.00');
   });
 });
 
@@ -140,9 +131,11 @@ describe('getDriveName', () => {
     expect(getDriveName).toBeDefined();
   });
 
-  it('getDriveName should return iCloud or Google Drive', () => {
-    const driveName = getDriveName();
-    expect(driveName).toMatch(/^(iCloud|Google Drive)$/);
+  it('getDriveName should return Google Drive on Android', () => {
+    expect(getDriveName()).toBe('Google Drive');
+  });
+  it('getDriveName should return Google Drive on Android', () => {
+    expect(getDriveName()).toBe('Google Drive');
   });
 });
 

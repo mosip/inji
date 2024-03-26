@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Text /> Testing the Text component 1`] = `
+<Text
+  style={
+    [
+      {
+        "color": "#000000",
+        "fontSize": 16,
+        "lineHeight": 18,
+      },
+      {
+        "fontFamily": "Inter_400Regular",
+        "fontSize": 14,
+      },
+      null,
+      {
+        "textAlign": "left",
+      },
+      null,
+      null,
+      null,
+    ]
+  }
+>
+  Testing react native text component
+</Text>
+`;
