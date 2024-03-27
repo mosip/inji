@@ -212,7 +212,7 @@ export function createAuthMachine(serviceRefs: AppServices) {
 type State = StateFrom<typeof authMachine>;
 
 export function selectPasscode(state: State) {
-  return state.context.passcode;
+  return state?.context?.passcode;
 }
 
 export function selectPasscodeSalt(state: State) {
@@ -236,7 +236,7 @@ export function selectUnauthorized(state: State) {
 }
 
 export function selectSettingUp(state: State) {
-  return state.matches('settingUp');
+  return state?.matches('settingUp');
 }
 
 export function selectLanguagesetup(state: State) {

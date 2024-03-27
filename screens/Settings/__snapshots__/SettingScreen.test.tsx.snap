@@ -1,0 +1,409 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing the settingsScreen component in Android and IOS renders the SettingScreen component in IOS 1`] = `
+<React.Fragment>
+  <Memo(Pressable)
+    accessible={false}
+    onPress={[Function]}
+  />
+  <BannerNotificationContainer />
+  <mockConstructor
+    accessibilityLabel="settingsScreen"
+    accessible={true}
+  >
+    <Layout
+      backgroundColor="#F8F8F8"
+      style={
+        {
+          "display": "flex",
+        }
+      }
+    >
+      <Text
+        color="#666666"
+        margin="10"
+        style={
+          {
+            "paddingTop": 3,
+          }
+        }
+        testID="injiAsVerifierApp"
+        weight="semibold"
+      >
+        injiAsVerifierApp
+      </Text>
+      <Layout
+        align="space-evenly"
+        backgroundColor="#FFFFFF"
+      >
+        <Memo(Pressable)
+          accessibilityLabel="receiveCardPressableArea"
+          accessible={true}
+          onPress={[Function]}
+        >
+          <Layout
+            align="center"
+            style={
+              {
+                "alignItems": "center",
+                "borderBottomRightRadius": 0,
+                "elevation": 1,
+                "height": 186.76000000000002,
+                "marginVertical": 18,
+                "padding": 15,
+                "width": 352.5,
+              }
+            }
+          >
+            <UNDEFINED
+              color1="#f59b4b"
+              color2="#e86e04"
+              stroke="#F2811D"
+            />
+            <Text
+              margin="6"
+              style={
+                {
+                  "paddingTop": 3,
+                }
+              }
+              testID="receiveCard"
+              weight="semibold"
+            >
+              receiveCard
+            </Text>
+          </Layout>
+        </Memo(Pressable)>
+        <ReceivedCards />
+      </Layout>
+      <Text
+        color="#666666"
+        margin="10"
+        style={
+          {
+            "paddingTop": 3,
+          }
+        }
+        weight="semibold"
+      >
+        basicSettings
+      </Text>
+    </Layout>
+    <Layout
+      fill={true}
+    >
+      <MessageOverlay
+        isVisible={false}
+        onBackdropPress={[Function]}
+        title=""
+      />
+      <LanguageSetting />
+      <UNDEFINED
+        disabled={true}
+        topDivider={true}
+      >
+        <mockConstructor
+          color="#F2811D"
+          name="fingerprint"
+          size={25}
+          type="MaterialCommunityIcons"
+        />
+        <Content>
+          <UNDEFINED
+            accessibilityLabel="bioUnlock"
+            accessible={true}
+            style={
+              {
+                "paddingTop": 3,
+              }
+            }
+          >
+            <Text
+              color="#000000"
+              weight="semibold"
+            >
+              bioUnlock
+            </Text>
+          </UNDEFINED>
+        </Content>
+        <UNDEFINED
+          accessibilityLabel="biometricToggle"
+          accessible={true}
+          color="#F2811D"
+          onValueChange={[Function]}
+          trackColor={
+            {
+              "false": "#C7C7C7",
+              "true": "#FDF1E6",
+            }
+          }
+        />
+      </UNDEFINED>
+      <AboutInji />
+      <Unknown />
+      <UNDEFINED
+        bottomDivider={true}
+        onPress={[Function]}
+        topDivider={true}
+      >
+        <mockConstructor
+          color="#F2811D"
+          name="book"
+          size={25}
+          type="antdesign"
+        />
+        <Content>
+          <UNDEFINED
+            accessibilityLabel="injiTourGuide"
+            accessible={true}
+            style={
+              {
+                "paddingTop": 3,
+              }
+            }
+          >
+            <Text
+              color="#000000"
+              weight="semibold"
+            >
+              injiTourGuide
+            </Text>
+          </UNDEFINED>
+        </Content>
+      </UNDEFINED>
+      <UNDEFINED
+        onPress={[Function]}
+      >
+        <mockConstructor
+          color="#F2811D"
+          name="logout"
+          size={22}
+          type="fontawesome"
+        />
+        <Content>
+          <UNDEFINED
+            accessibilityLabel="logout"
+            accessible={true}
+            style={
+              {
+                "paddingTop": 3,
+              }
+            }
+          >
+            <Text
+              color="#000000"
+              weight="semibold"
+            >
+              logout
+            </Text>
+          </UNDEFINED>
+        </Content>
+      </UNDEFINED>
+    </Layout>
+  </mockConstructor>
+</React.Fragment>
+`;
+
+exports[`testing the settingsScreen component in Android and IOS renders the SettingScreen component in android 1`] = `
+<React.Fragment>
+  <Memo(Pressable)
+    accessible={false}
+    onPress={[Function]}
+  />
+  <BannerNotificationContainer />
+  <mockConstructor
+    accessibilityLabel="settingsScreen"
+    accessible={true}
+  >
+    <Layout
+      backgroundColor="#F8F8F8"
+      style={
+        {
+          "display": "flex",
+        }
+      }
+    >
+      <Text
+        color="#666666"
+        margin="10"
+        style={
+          {
+            "paddingTop": 3,
+          }
+        }
+        testID="injiAsVerifierApp"
+        weight="semibold"
+      >
+        injiAsVerifierApp
+      </Text>
+      <Layout
+        align="space-evenly"
+        backgroundColor="#FFFFFF"
+      >
+        <Memo(Pressable)
+          accessibilityLabel="receiveCardPressableArea"
+          accessible={true}
+          onPress={[Function]}
+        >
+          <Layout
+            align="center"
+            style={
+              {
+                "alignItems": "center",
+                "borderBottomRightRadius": 0,
+                "elevation": 1,
+                "height": 186.76000000000002,
+                "marginVertical": 18,
+                "padding": 15,
+                "width": 352.5,
+              }
+            }
+          >
+            <UNDEFINED
+              color1="#f59b4b"
+              color2="#e86e04"
+              stroke="#F2811D"
+            />
+            <Text
+              margin="6"
+              style={
+                {
+                  "paddingTop": 3,
+                }
+              }
+              testID="receiveCard"
+              weight="semibold"
+            >
+              receiveCard
+            </Text>
+          </Layout>
+        </Memo(Pressable)>
+        <ReceivedCards />
+      </Layout>
+      <Text
+        color="#666666"
+        margin="10"
+        style={
+          {
+            "paddingTop": 3,
+          }
+        }
+        weight="semibold"
+      >
+        basicSettings
+      </Text>
+    </Layout>
+    <Layout
+      fill={true}
+    >
+      <MessageOverlay
+        isVisible={false}
+        onBackdropPress={[Function]}
+        title=""
+      />
+      <LanguageSetting />
+      <UNDEFINED
+        disabled={true}
+        topDivider={true}
+      >
+        <mockConstructor
+          color="#F2811D"
+          name="fingerprint"
+          size={25}
+          type="MaterialCommunityIcons"
+        />
+        <Content>
+          <UNDEFINED
+            accessibilityLabel="bioUnlock"
+            accessible={true}
+            style={
+              {
+                "paddingTop": 3,
+              }
+            }
+          >
+            <Text
+              color="#000000"
+              weight="semibold"
+            >
+              bioUnlock
+            </Text>
+          </UNDEFINED>
+        </Content>
+        <UNDEFINED
+          accessibilityLabel="biometricToggle"
+          accessible={true}
+          color="#F2811D"
+          onValueChange={[Function]}
+          trackColor={
+            {
+              "false": "#C7C7C7",
+              "true": "#FDF1E6",
+            }
+          }
+        />
+      </UNDEFINED>
+      <AboutInji />
+      <Unknown />
+      <UNDEFINED
+        bottomDivider={true}
+        onPress={[Function]}
+        topDivider={true}
+      >
+        <mockConstructor
+          color="#F2811D"
+          name="book"
+          size={25}
+          type="antdesign"
+        />
+        <Content>
+          <UNDEFINED
+            accessibilityLabel="injiTourGuide"
+            accessible={true}
+            style={
+              {
+                "paddingTop": 3,
+              }
+            }
+          >
+            <Text
+              color="#000000"
+              weight="semibold"
+            >
+              injiTourGuide
+            </Text>
+          </UNDEFINED>
+        </Content>
+      </UNDEFINED>
+      <UNDEFINED
+        onPress={[Function]}
+      >
+        <mockConstructor
+          color="#F2811D"
+          name="logout"
+          size={22}
+          type="fontawesome"
+        />
+        <Content>
+          <UNDEFINED
+            accessibilityLabel="logout"
+            accessible={true}
+            style={
+              {
+                "paddingTop": 3,
+              }
+            }
+          >
+            <Text
+              color="#000000"
+              weight="semibold"
+            >
+              logout
+            </Text>
+          </UNDEFINED>
+        </Content>
+      </UNDEFINED>
+    </Layout>
+  </mockConstructor>
+</React.Fragment>
+`;
