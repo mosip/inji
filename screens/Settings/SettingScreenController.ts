@@ -33,13 +33,13 @@ import {REQUEST_ROUTES} from '../../routes/routesConstants';
 
 export function useSettingsScreen(props: RootRouteProps & RequestRouteProps) {
   const {appService} = useContext(GlobalContext);
-  const authService = appService?.children?.get('auth');
-  const settingsService = appService?.children?.get('settings');
+  const authService = appService?.children?.get('auth') || {};
+  const settingsService = appService?.children?.get('settings') || {};
 
   const [isVisible, setIsVisible] = useState(false);
 
   const [alertMsg, setHasAlertMsg] = useState('');
-  const authBiometrics = useSelector(authService || {}, selectBiometrics);
+  const authBiometrics = useSelector(authService, selectBiometrics);
   const [biometricState, biometricSend, bioService] =
     useMachine(biometricsMachine);
   const passcode = useSelector(authService, selectPasscode);
@@ -111,7 +111,10 @@ export function useSettingsScreen(props: RootRouteProps & RequestRouteProps) {
     appId: useSelector(settingsService || {}, selectAppId),
     name: useSelector(settingsService || {}, selectName),
     vcLabel: useSelector(settingsService || {}, selectVcLabel),
-    credentialRegistry: useSelector(settingsService || {}, selectCredentialRegistry),
+    credentialRegistry: useSelector(
+      settingsService || {},
+      selectCredentialRegistry,
+    ),
     esignetHostUrl: useSelector(settingsService || {}, selectEsignetHostUrl),
     credentialRegistryResponse: useSelector(
       settingsService || {},

@@ -8,6 +8,7 @@
     "build:android:mosip": "cd android && ./gradlew :app:assembleResidentappRelease && cd ..",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "test": "jest",
+    "test-coverage": "jest --coverage",
     "postinstall": "patch-package && npm run jetify && sh tools/talisman/talisman-precommit.sh"
   },
   "dependencies": {

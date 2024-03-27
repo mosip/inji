@@ -32,6 +32,7 @@ module.exports = {
     'node_modules/(?!(@react-native|react-native|react-native-argon2|@react-navigation|react-native-elements|react-native-size-matters|react-native-ratings|expo-constants|base58-universal|@react-native-*|react-native-google-signin|react-native-linear-gradient|expo-camera|base58-universal/*|react-native-*)/).*/',
   ],
   setupFiles: [
+    '<rootDir>/__mocks__/svg.mock.js',
     '<rootDir>/__mocks__/jest-init.js',
     '<rootDir>/__mocks__/mmkv-db-setup.js',
     '<rootDir>/__mocks__/react-native.mock.js',
@@ -61,6 +62,7 @@ module.exports = {
     // https://stackoverflow.com/a/54513338
     '\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       '<rootDir>/__mocks__/fileMock.js',
+    '\\.(svg)$': '<rootDir>/__mocks__/svg.mock.js',
     '^\\.\\/locales\\/en\\.json$': '<rootDir>/__mocks__/en.mock.json',
     '^@digitalbazaar/rsa-verification-key-2018$':
       '<rootDir>/__mocks__/rsa-verification-key-2018.js',
