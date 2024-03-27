@@ -25,7 +25,7 @@
     "Wallet": "محفظة"
   },
   "FaceScanner": {
-    "imageCaptureGuide": "أمسك الهاتف بثبات، وحافظ على تركيز وجهك في المنتصف وانقر على ‘التقاط'",
+    "imageCaptureGuide": "أمسك الهاتف بثبات وحافظ على تركيز وجهك في المنتصف",
     "capture": "يأسر",
     "flipCamera": "فليب الكاميرا"
   },
@@ -97,7 +97,7 @@
     "offlineAuthenticationDisabled": "تفعيل لتسجيل الدخول عبر الإنترنت",
     "inProgress": "في تَقَدم",
     "credentialActivated": "مفعل",
-    "profileAuthenticated": "رمز الاستجابة السريعة تسجيل الدخول",
+    "profileAuthenticated": "رمز الاستجابة السريعة تسجيل الدخول"
   },
   "BindingVcWarningOverlay": {
     "alert": "يرجى تأكيد",

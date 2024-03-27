@@ -332,11 +332,11 @@ function deviceSupportsHardwareKeystore() {
 type State = StateFrom<typeof settingsMachine>;
 
 export function selectName(state: State) {
-  return state.context.name;
+  return state?.context?.name;
 }
 
 export function selectAppId(state: State) {
-  return state.context.appId;
+  return state?.context?.appId;
 }
 
 /** Alerting the user when the hardware keystore not supported by device and
@@ -353,31 +353,31 @@ export function selectShowAccountSelectionConfirmation(state: State) {
 }
 
 export function selectVcLabel(state: State) {
-  return state.context.vcLabel;
+  return state?.context?.vcLabel;
 }
 
 export function selectCredentialRegistry(state: State) {
-  return state.context.credentialRegistry;
+  return state?.context?.credentialRegistry;
 }
 
 export function selectEsignetHostUrl(state: State) {
-  return state.context.esignetHostUrl;
+  return state?.context?.esignetHostUrl;
 }
 
 export function selectCredentialRegistryResponse(state: State) {
-  return state.context.credentialRegistryResponse;
+  return state?.context?.credentialRegistryResponse;
 }
 
 export function selectBiometricUnlockEnabled(state: State) {
-  return state.context.isBiometricUnlockEnabled;
+  return state?.context?.isBiometricUnlockEnabled;
 }
 
 export function selectIsResetInjiProps(state: State) {
-  return state.matches('resetInjiProps');
+  return state?.matches('resetInjiProps');
 }
 
 export function selectIsBackUpAndRestoreExplored(state: State) {
-  return state.context.isBackupAndRestoreExplored;
+  return state?.context?.isBackupAndRestoreExplored;
 }
 
 export function selectIsBiometricUnlock(state: State) {

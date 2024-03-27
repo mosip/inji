@@ -38,11 +38,11 @@ i18next
   })
   .then(async () => {
     const existingCredentials = await Keychain.getGenericPassword();
-    const language = await getItem(
-      'language',
-      null,
-      existingCredentials.password,
-    );
+
+    const language = existingCredentials
+      ? await getItem('language', null, existingCredentials.password)
+      : null;
+
     if (language !== i18next.language) {
       i18next.changeLanguage(language);
       populateLanguageCodeMap();
@@ -94,9 +94,11 @@ export function getClientNameForCurrentLanguage(
 // This method gets the value from iso-639-3 package, which contains key value pairs of three letter language codes[key] and two letter langugae code[value]. These values are according to iso standards.
 // The response received from the server is three letter language code and the value in the inji code base is two letter language code. Hence the conversion is done.
 function getThreeLetterLanguageCode(twoLetterLanguageCode: string) {
-  return Object.keys(iso6393To1).find(
-    key => iso6393To1[key] === twoLetterLanguageCode,
-  );
+  return iso6393To1
+    ? Object.keys(iso6393To1).find(
+        key => iso6393To1[key] === twoLetterLanguageCode,
+      )
+    : null;
 }
 
 function populateLanguageCodeMap() {

@@ -1,20 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {TFunction, useTranslation} from 'react-i18next';
 import QRCode from 'react-native-qrcode-svg';
-
 import {Centered, Button, Column, Text} from '../../components/ui';
 import {Theme} from '../../components/ui/styleUtils';
 import {useRequestScreen} from './RequestScreenController';
 import BluetoothStateManager from 'react-native-bluetooth-state-manager';
-import {Platform, View} from 'react-native';
-import Storage from '../../shared/storage';
+import {View} from 'react-native';
 import {ErrorMessageOverlay} from '../../components/MessageOverlay';
-import {
-  NavigationProp,
-  useFocusEffect,
-  useNavigation,
-} from '@react-navigation/native';
-import {MainBottomTabParamList} from '../../routes/routeTypes';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {MainBottomTabParamList} from '../../routes/main';
 import {BOTTOM_TAB_ROUTES} from '../../routes/routesConstants';
 import {ProgressingModal} from '../../components/ProgressingModal';
 import {isIOS} from '../../shared/constants';

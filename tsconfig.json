@@ -1,4 +1,14 @@
 {
   "extends": "@tsconfig/react-native/tsconfig.json",
-  "include": ["src", "custom.d.ts"]
+  "compilerOptions": {
+    "outDir": "./build",
+    "jsx": "react",
+    "declaration": false
+  },
+  "include": [
+    "src",
+    "custom.d.ts",
+    "./types/react-native-dotenv/index.d.ts",
+    "./types/react-native-argon2/index.d.ts",
+  ]
 }

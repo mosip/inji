@@ -180,7 +180,7 @@ export const authMachine = model.createMachine(
       downloadFaceSdkModel: () => () => {
         downloadModel();
       },
-      generatePasscodeSalt: () => async context => {
+      generatePasscodeSalt: () => async () => {
         const randomBytes = await generateSecureRandom(16);
         return binaryToBase64(randomBytes) as string;
       },
@@ -212,7 +212,7 @@ export function createAuthMachine(serviceRefs: AppServices) {
 type State = StateFrom<typeof authMachine>;
 
 export function selectPasscode(state: State) {
-  return state.context.passcode;
+  return state?.context?.passcode;
 }
 
 export function selectPasscodeSalt(state: State) {
@@ -220,11 +220,11 @@ export function selectPasscodeSalt(state: State) {
 }
 
 export function selectBiometrics(state: State) {
-  return state.context.biometrics;
+  return state?.context?.biometrics;
 }
 
 export function selectCanUseBiometrics(state: State) {
-  return state.context.canUseBiometrics;
+  return state?.context?.canUseBiometrics;
 }
 
 export function selectAuthorized(state: State) {
@@ -236,7 +236,7 @@ export function selectUnauthorized(state: State) {
 }
 
 export function selectSettingUp(state: State) {
-  return state.matches('settingUp');
+  return state?.matches('settingUp');
 }
 
 export function selectLanguagesetup(state: State) {

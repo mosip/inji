@@ -2,13 +2,13 @@ fileignoreconfig:
   - filename: package.json
     checksum: 730263252adbe53cde58fb0b6988e519e766fe0f89a7b8cd261a1e5e5e598328
   - filename: package-lock.json
-    checksum: b018f6e214d4f1573c587d773984f2b10765b62100293b240cb48e724d9b0158
+    checksum: 3099005e4204e868de8df7f6ec1d5e4f87ad1dc6c672e363ef8db66e18330026
   - filename: lib/jsonld-signatures/suites/ed255192018/ed25519.ts
     checksum: 493b6e31144116cb612c24d98b97d8adcad5609c0a52c865a6847ced0a0ddc3a
   - filename: components/PasscodeVerify.tsx
     checksum: 14654c0f038979fcd0d260170a45894a072f81e0767ca9a0e66935d33b5cc703
   - filename: i18n.ts
-    checksum: 4af6370d4557b780f9a29590db91c3e5544a432e272afee6d21a0cabc2faaff0
+    checksum: e80d40f33692c195d034774d024cafdf63d010ac6d4a35f94b2a5d81b78c234b
   - filename: components/Passcode.tsx
     checksum: db4a18001be8c63bf7ffb389359861401fa1d22261b10ad729a76fd431c019a7
   - filename: components/PasscodeVerify.tsx
@@ -158,7 +158,9 @@ fileignoreconfig:
   - filename: components/BannerNotificationContainer.tsx
     checksum: a98ff1a0dd96d3ead4b8191320be8b0c7a558cda6b0de39f1c62aaa8efef9fb8
   - filename: components/HelpScreen.tsx
-    checksum: bbc69143bd37d065bba3800396301db5a0318e8b7ba51ecd49142dda68783a01  
+    checksum: bbc69143bd37d065bba3800396301db5a0318e8b7ba51ecd49142dda68783a01
+  - filename: machines/backupRestore.ts
+    checksum: bbc69143bd37d065bba3800396301db5a0318e8b7ba51ecd49142dda68783a01
   - filename: injitest/README.md
     checksum: 82974a6b9363512472272245e9b433f92e63377e58ba306980876b745181a09c
   - filename: shared/VCMetadata.ts
@@ -211,5 +213,24 @@ fileignoreconfig:
     checksum: 1a15e4327b358ffee8bddfe412a38873ad6d4414d2b1d6bffd3c1782f5ec852f  
   - filename: screens/Home/IntroSlidersScreen.tsx
     checksum: 9880724461b194db7651737576ad2fd2db9cf3b4e732747f59be422a7ff4e4a1
+  - filename: jest.setup.js
+    checksum: 2576884c00d7f90f20d4f9c5f1ec9ee97f4c41a2d9d37a649eaf26bfc2c01a50
+  - filename: __mocks__/react-native-rsa-native.mock.js
+    checksum: f5a4254f4d172107231a51ce0968ef1ad7ab0b8f0b5a4db72d1d5bc4e9ce179a  
+  - filename: __mocks__/react-native-secure-key-store.mock.js
+    checksum: 249eeeb9f8cf083f8d008882a5aeab194e9e6344f68732a2a8c78a69ff5f2ee8  
+  - filename: __mocks__/jest-init.js
+    checksum: 7cec36ae248f04fe50235f1281be455351002acbb6fdc881ad327a30b86ba5e5
+  - filename: components/ActivityLogEvent.test.ts
+    checksum: 5f9bf6d499106863fee65476adcec9253638d093bf0b58f1a11225915e9b0560
+  - filename: __mocks__/mmkv-db-setup.js
+    checksum: b94da7e4bc1bd52b5f0131104fcf25163df9cdb9af14425287d17fd56f4f09e3
+  - filename: __mocks__/react-native-keychain.mock.js
+    checksum: cc2798f843b776e70d957a4f7cdf47e199a29d9f6547fb9f59753108e8f252fa
+  - filename: machines/auth.ts
+    checksum: 46195ee93f9b7ac6794a06eeef5dee5ea242047a557af8bf95df04e1343d7b9e 
+  - filename: shared/commonUtil.generated.test.ts
+    checksum: 4ca5983bb133f8f02bfd52fd0cc49ce37b24b164f3ca78a03ad97bb353ed00a4 
+  - filename: __mocks__/en.mock.json
+    checksum: b34340a3f40c691f06698f7758b8c068a09ed7215098a0d11baed191c0972e04
     version: ""
-

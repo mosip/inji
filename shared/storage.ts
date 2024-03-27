@@ -24,7 +24,6 @@ import FileStorage, {
   getFilePath,
   getDirectorySize,
   vcDirectoryPath,
-  backupDirectoryPath,
 } from './fileStorage';
 import {__AppId} from './GlobalVariables';
 import {getErrorEventData, sendErrorEvent} from './telemetry/TelemetryUtils';

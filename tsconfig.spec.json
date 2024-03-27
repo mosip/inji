@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react"
+  },
+  "includes": ["src/**/*.spec.ts"],
+  "exclude": ["e2e", "examples", "website"],
+  "lib": ["jest"]
+}
