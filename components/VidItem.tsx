@@ -5,25 +5,22 @@ import {CheckBox} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {ActorRefFrom} from 'xstate';
 import {
-  selectVerifiableCredential,
   selectGeneratedOn,
-} from '../machines/VCItemMachine/commonSelectors';
-import {
-  createExistingMosipVCItemMachine,
   selectId,
-  ExistingMosipVCItemMachine,
-} from '../machines/VCItemMachine/ExistingMosipVCItem/ExistingMosipVCItemMachine';
+  selectVerifiableCredential,
+} from '../machines/VCItemMachine/selectors';
 import {Column, Row, Text} from './ui';
 import {Theme} from './ui/styleUtils';
 import {RotatingIcon} from './RotatingIcon';
 import {GlobalContext} from '../shared/GlobalContext';
 import {getLocalizedField} from '../i18n';
 import {VCMetadata} from '../shared/VCMetadata';
+import {createVCItemMachine} from '../machines/VCItemMachine/VCItemMachine';
 
 export const VidItem: React.FC<VcItemProps> = props => {
   const {appService} = useContext(GlobalContext);
   const machine = useRef(
-    createExistingMosipVCItemMachine(
+    createVCItemMachine(
       appService.getSnapshot().context.serviceRefs,
       props.vcMetadata,
     ),
@@ -106,5 +103,5 @@ interface VcItemProps {
   margin?: string;
   selectable?: boolean;
   selected?: boolean;
-  onPress?: (vcRef?: ActorRefFrom<typeof ExistingMosipVCItemMachine>) => void;
+  onPress?: (vcRef?: ActorRefFrom<typeof VCItemMachine>) => void;
 }

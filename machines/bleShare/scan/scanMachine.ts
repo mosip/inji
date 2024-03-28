@@ -14,15 +14,15 @@ import {createModel} from 'xstate/lib/model';
 import {EmitterSubscription, Linking} from 'react-native';
 import {DeviceInfo} from '../../../components/DeviceInfoList';
 import {getDeviceNameSync} from 'react-native-device-info';
-import {VC, VerifiablePresentation} from '../../../types/VC/ExistingMosipVC/vc';
+import {VC, VerifiablePresentation} from '../../../types/VC/vc';
 import {AppServices} from '../../../shared/GlobalContext';
 import {ActivityLogEvents, ActivityLogType} from '../../activityLog';
 import {
   androidVersion,
+  FACE_AUTH_CONSENT,
   isAndroid,
   isIOS,
   MY_LOGIN_STORE_KEY,
-  FACE_AUTH_CONSENT,
 } from '../../../shared/constants';
 import {subscribe} from '../../../shared/openIdBLE/walletEventHandler';
 import {
@@ -160,7 +160,7 @@ export const scanMachine =
           target: '#scan.disconnectDevice',
         },
         SCREEN_FOCUS: {
-          target: 'checkStorage',
+          target: '.checkStorage',
         },
         BLE_ERROR: {
           target: '.handlingBleError',
@@ -206,6 +206,7 @@ export const scanMachine =
           },
         },
         restrictSharingVc: {},
+
         startPermissionCheck: {
           on: {
             START_PERMISSION_CHECK: [
@@ -661,12 +662,12 @@ export const scanMachine =
             },
             disconnect: {
               //Renamed this to disconnect from navigateToHome as we are disconnecting the devices.
-              entry: ['resetFlowType', 'resetSelectedVc'],
               invoke: {
                 src: 'disconnect',
               },
             },
             navigateToHistory: {
+              entry: ['resetFlowType', 'resetSelectedVc'],
               always: '#scan.disconnected',
             },
             faceVerificationConsent: {

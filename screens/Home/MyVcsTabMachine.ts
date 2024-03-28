@@ -10,14 +10,13 @@ import {
 import {createModel} from 'xstate/lib/model';
 import {StoreEvents} from '../../machines/store';
 import {VcEvents} from '../../machines/VCItemMachine/vc';
-import {ExistingMosipVCItemMachine} from '../../machines/VCItemMachine/ExistingMosipVCItem/ExistingMosipVCItemMachine';
 import {AppServices} from '../../shared/GlobalContext';
 import {MY_VCS_STORE_KEY} from '../../shared/constants';
 import {AddVcModalMachine} from './MyVcs/AddVcModalMachine';
 import {GetVcModalMachine} from './MyVcs/GetVcModalMachine';
 import {VCMetadata} from '../../shared/VCMetadata';
-import {EsignetMosipVCItemMachine} from '../../machines/VCItemMachine/EsignetMosipVCItem/EsignetMosipVCItemMachine';
 import NetInfo from '@react-native-community/netinfo';
+import {VCItemMachine} from '../../machines/VCItemMachine/VCItemMachine';
 
 const model = createModel(
   {
@@ -26,11 +25,7 @@ const model = createModel(
   },
   {
     events: {
-      VIEW_VC: (
-        vcItemActor:
-          | ActorRefFrom<typeof ExistingMosipVCItemMachine>
-          | ActorRefFrom<typeof EsignetMosipVCItemMachine>,
-      ) => ({
+      VIEW_VC: (vcItemActor: ActorRefFrom<typeof VCItemMachine>) => ({
         vcItemActor,
       }),
       DISMISS: () => ({}),

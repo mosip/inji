@@ -30,6 +30,7 @@ export interface Typegen0 {
     requestStoredContext: 'xstate.init';
     setBiometrics: 'SETUP_BIOMETRICS';
     setContext: 'STORE_RESPONSE';
+    setIsToggleFromSettings: 'CHANGE_METHOD';
     setLanguage: 'SETUP_BIOMETRICS' | 'SETUP_PASSCODE';
     setPasscode: 'SETUP_PASSCODE';
     setPasscodeSalt: 'done.invoke.auth.introSlider:invocation[0]';
@@ -48,7 +49,7 @@ export interface Typegen0 {
     hasPasscodeSet: '';
   };
   eventsCausingServices: {
-    downloadFaceSdkModel: 'LOGIN' | 'SETUP_PASSCODE';
+    downloadFaceSdkModel: 'LOGIN' | 'SETUP_BIOMETRICS' | 'SETUP_PASSCODE';
     generatePasscodeSalt: 'SELECT';
   };
   matchesStates:

@@ -1,12 +1,6 @@
 import React from 'react';
-import {
-  EsignetVCItemDetailsProps,
-  ExistingVCItemDetailsProps,
-  VCDetailView,
-} from './Views/VCDetailView';
+import {VCDetailView, VCItemDetailsProps} from './Views/VCDetailView';
 
-export const VcDetailsContainer: React.FC<
-  ExistingVCItemDetailsProps | EsignetVCItemDetailsProps
-> = props => {
+export const VcDetailsContainer: React.FC<VCItemDetailsProps> = props => {
   return <VCDetailView {...props} />;
 };

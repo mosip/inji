@@ -1,19 +1,18 @@
-import {VC, VcIdType} from '../types/VC/ExistingMosipVC/vc';
+import {VC, VcIdType} from '../types/VC/vc';
 import {Issuers, Protocols} from './openId4VCI/Utils';
 
 const VC_KEY_PREFIX = 'VC';
 const VC_ITEM_STORE_KEY_REGEX = '^VC_[a-zA-Z0-9_-]+$';
 
 export class VCMetadata {
+  static vcKeyRegExp = new RegExp(VC_ITEM_STORE_KEY_REGEX);
   idType: VcIdType | string = '';
   requestId = '';
   isPinned = false;
   id: string = '';
-
   issuer?: string = '';
   protocol?: string = '';
   timestamp?: string = '';
-  static vcKeyRegExp = new RegExp(VC_ITEM_STORE_KEY_REGEX);
 
   constructor({
     idType = '',

@@ -1,14 +1,11 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {DeviceInfoList} from '../../components/DeviceInfoList';
-import {Button, Column, Row, Text} from '../../components/ui';
+import {Button, Column, Text} from '../../components/ui';
 import {Theme} from '../../components/ui/styleUtils';
 import {useReceiveVcScreen} from './ReceiveVcScreenController';
 import {VerifyIdentityOverlay} from '../VerifyIdentityOverlay';
-import {
-  ErrorMessageOverlay,
-  MessageOverlay,
-} from '../../components/MessageOverlay';
+import {MessageOverlay} from '../../components/MessageOverlay';
 import {useOverlayVisibleAfterTimeout} from '../../shared/hooks/useOverlayVisibleAfterTimeout';
 import {VcDetailsContainer} from '../../components/VC/VcDetailsContainer';
 import {SharingStatusModal} from '../Scan/SharingStatusModal';
@@ -34,7 +31,8 @@ export const ReceiveVcScreen: React.FC = () => {
               {t('header')}
             </Text>
             <VcDetailsContainer
-              vc={controller.incomingVc}
+              credential={controller.credential}
+              verifiableCredentialData={controller.verifiableCredentialData}
               isBindingPending={false}
               activeTab={1}
             />
@@ -50,7 +48,8 @@ export const ReceiveVcScreen: React.FC = () => {
       )}
 
       <VerifyIdentityOverlay
-        vc={controller.incomingVc}
+        credential={controller.selectCredential}
+        verifiableCredentialData={controller.verifiableCredentialData}
         isVerifyingIdentity={controller.isVerifyingIdentity}
         onCancel={controller.CANCEL}
         onFaceValid={controller.FACE_VALID}

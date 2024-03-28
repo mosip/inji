@@ -14,7 +14,7 @@ import {
   MY_VCS_STORE_KEY,
 } from '../shared/constants';
 import {StoreEvents} from './store';
-import {linkTransactionResponse, VC} from '../types/VC/ExistingMosipVC/vc';
+import {linkTransactionResponse, VC} from '../types/VC/vc';
 import {request} from '../shared/request';
 import {
   getJWT,
@@ -31,9 +31,9 @@ import {
   sendEndEvent,
 } from '../shared/telemetry/TelemetryUtils';
 import {TelemetryConstants} from '../shared/telemetry/TelemetryConstants';
-import {API_URLS} from '../shared/api';
-import getAllConfigurations from '../shared/api';
+import getAllConfigurations, {API_URLS} from '../shared/api';
 import {VCShareFlowType} from '../shared/Utils';
+import {getMosipLogo} from '../components/VC/common/VCUtils';
 
 const model = createModel(
   {
@@ -598,6 +598,7 @@ type State = StateFrom<typeof qrLoginMachine>;
 export function selectMyVcs(state: State) {
   return state.context.myVcs;
 }
+
 export function selectIsWaitingForData(state: State) {
   return state.matches('waitingForData');
 }
@@ -633,6 +634,7 @@ export function selectIsShowError(state: State) {
 export function selectIsRequestConsent(state: State) {
   return state.matches('requestConsent');
 }
+
 export function selectIsSendingAuthenticate(state: State) {
   return state.matches('sendingAuthenticate');
 }
@@ -645,13 +647,37 @@ export function selectIsVerifyingSuccesful(state: State) {
   return state.matches('success');
 }
 
-export function selectSelectedVc(state: State) {
-  return state.context.selectedVc;
+export function selectCredential(state: State) {
+  return new VCMetadata(state.context.selectedVc?.vcMetadata).isFromOpenId4VCI()
+    ? state.context.selectedVc?.verifiableCredential?.credential
+    : state.context.selectedVc?.credential;
+}
+
+export function selectVerifiableCredentialData(state: State) {
+  const vcMetadata = new VCMetadata(state.context.selectedVc?.vcMetadata);
+  return vcMetadata.isFromOpenId4VCI()
+    ? {
+        vcMetadata: vcMetadata,
+        face: state.context.selectedVc?.verifiableCredential?.credential
+          ?.credentialSubject?.face,
+        issuerLogo: state.context.selectedVc?.verifiableCredential?.issuerLogo,
+        wellKnown: state.context.selectedVc?.verifiableCredential?.wellKnown,
+        credentialTypes:
+          state.context.selectedVc?.verifiableCredential?.credentialTypes,
+        issuer: vcMetadata.issuer,
+      }
+    : {
+        vcMetadata: vcMetadata,
+        issuer: vcMetadata.issuer,
+        face: state.context.selectedVc?.credential?.biometrics?.face,
+        issuerLogo: getMosipLogo(),
+      };
 }
 
 export function selectLinkTransactionResponse(state: State) {
   return state.context.linkTransactionResponse;
 }
+
 export function selectEssentialClaims(state: State) {
   return state.context.essentialClaims;
 }
@@ -671,6 +697,7 @@ export function selectClientName(state: State) {
 export function selectErrorMessage(state: State) {
   return state.context.errorMessage;
 }
+
 export function selectIsSharing(state: State) {
   return state.context.isSharing;
 }

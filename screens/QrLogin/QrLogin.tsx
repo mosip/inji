@@ -12,7 +12,7 @@ import {Icon} from 'react-native-elements';
 import {View} from 'react-native';
 import {FaceVerificationAlertOverlay} from '../Scan/FaceVerificationAlertOverlay';
 import {Error} from '../../components/ui/Error';
-import { SvgImage } from '../../components/ui/svg';
+import {SvgImage} from '../../components/ui/svg';
 
 export const QrLogin: React.FC<QrLoginProps> = props => {
   const controller = useQrLogin(props);
@@ -50,11 +50,15 @@ export const QrLogin: React.FC<QrLoginProps> = props => {
         />
 
         <VerifyIdentityOverlay
-          vc={controller.selectedVc}
+          credential={controller.selectCredential}
+          verifiableCredentialData={controller.verifiableCredentialData}
           isVerifyingIdentity={controller.isVerifyingIdentity}
           onCancel={controller.CANCEL}
           onFaceValid={controller.FACE_VALID}
           onFaceInvalid={controller.FACE_INVALID}
+          isInvalidIdentity={controller.isInvalidIdentity}
+          onDismiss={controller.DISMISS}
+          onRetryVerification={controller.RETRY_VERIFICATION}
         />
 
         <FaceVerificationAlertOverlay

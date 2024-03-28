@@ -6,6 +6,7 @@ import {
 import {ActorRefFrom} from 'xstate';
 import {ModalProps} from '../../../components/ui/Modal';
 import {useSelector} from '@xstate/react';
+import {VCItemMachine} from '../../../machines/VCItemMachine/VCItemMachine';
 
 export function useOtpVerificationModal({service}: OtpVerificationModalProps) {
   return {
@@ -18,7 +19,7 @@ export function useOtpVerificationModal({service}: OtpVerificationModalProps) {
 }
 
 export interface OtpVerificationModalProps extends ModalProps {
-  service: ActorRefFrom<typeof AddVcModalMachine>;
+  service: ActorRefFrom<typeof AddVcModalMachine | typeof VCItemMachine>;
   onInputDone: (otp: string) => void;
   error?: string;
   resend?: () => void;

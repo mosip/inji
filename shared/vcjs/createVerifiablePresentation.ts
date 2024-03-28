@@ -2,10 +2,7 @@ import vcjs from '@digitalcredentials/vc';
 import jsonld from '@digitalcredentials/jsonld';
 // import { RSAKeyPair } from '@digitalcredentials/jsonld-signatures';
 import {RsaSignature2018} from '../../lib/jsonld-signatures/suites/rsa2018/RsaSignature2018';
-import {
-  VerifiableCredential,
-  VerifiablePresentation,
-} from '../../types/VC/ExistingMosipVC/vc';
+import {VerifiableCredential, VerifiablePresentation} from '../../types/VC/vc';
 
 export function createVerifiablePresentation(
   vc: VerifiableCredential,

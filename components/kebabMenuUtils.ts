@@ -3,13 +3,10 @@ import {SvgImage} from './ui/svg';
 import {useKebabPopUp} from './KebabPopUpController';
 import {isActivationNeeded} from '../shared/openId4VCI/Utils';
 import {VCShareFlowType} from '../shared/Utils';
-import {useNavigation} from '@react-navigation/native';
-import {BOTTOM_TAB_ROUTES} from '../routes/routesConstants';
 
 export const getKebabMenuOptions = props => {
   const controller = useKebabPopUp(props);
   const {t} = useTranslation('HomeScreenKebabPopUp');
-  const navigation = useNavigation();
 
   const loadScanScreen = flowType => () => {
     controller.SELECT_VC_ITEM(props.service, flowType),
@@ -18,7 +15,7 @@ export const getKebabMenuOptions = props => {
   };
 
   const activationNotCompleted =
-    controller.emptyWalletBindingId &&
+    !controller.walletBindingResponse &&
     isActivationNeeded(props?.vcMetadata.issuer);
 
   const vcActionsList = [
@@ -38,7 +35,6 @@ export const getKebabMenuOptions = props => {
       label: t('viewActivityLog'),
       icon: SvgImage.OutlinedScheduleIcon(),
       onPress: controller.SHOW_ACTIVITY,
-
       testID: 'viewActivityLog',
     },
     {

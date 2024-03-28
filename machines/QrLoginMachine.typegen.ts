@@ -48,20 +48,20 @@ export interface Typegen0 {
     loadMyVcs: 'done.invoke.QrLogin.linkTransaction:invocation[0]';
     loadThumbprint: 'FACE_VALID';
     resetFlowType: 'xstate.init';
-    logValue: 'VERIFY';
     resetLinkTransactionId: 'GET';
     resetSelectedVc: 'xstate.init';
     resetSelectedVoluntaryClaims: 'GET';
     setClaims: 'done.invoke.QrLogin.linkTransaction:invocation[0]';
     setConsentClaims: 'TOGGLE_CONSENT_CLAIM';
+    setFaceAuthConsent: 'GET';
     setLinkedTransactionId: 'done.invoke.QrLogin.sendingAuthenticate:invocation[0]';
     setMyVcs: 'STORE_RESPONSE';
     setScanData: 'GET';
     setSelectedVc: 'SELECT_VC';
-    setShowAgainConsent: 'FACE_VERIFICATION_CONSENT';
+    setShowFaceAuthConsent: 'FACE_VERIFICATION_CONSENT';
     setThumbprint: 'STORE_RESPONSE';
     setlinkTransactionResponse: 'done.invoke.QrLogin.linkTransaction:invocation[0]';
-    storeContext: 'FACE_VERIFICATION_CONSENT';
+    storeShowFaceAuthConsent: 'FACE_VERIFICATION_CONSENT';
   };
   eventsCausingDelays: {};
   eventsCausingGuards: {
@@ -69,7 +69,7 @@ export interface Typegen0 {
     isSimpleShareFlow:
       | 'CANCEL'
       | 'done.invoke.QrLogin.linkTransaction:invocation[0]';
-    isConsentGiven: 'VERIFY';
+    showFaceAuthConsentScreen: 'VERIFY';
   };
   eventsCausingServices: {
     linkTransaction: 'GET';

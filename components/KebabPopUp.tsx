@@ -5,12 +5,12 @@ import {Column, Row, Text} from '../components/ui';
 import {View} from 'react-native';
 import {useKebabPopUp} from './KebabPopUpController';
 import {ActorRefFrom} from 'xstate';
-import {ExistingMosipVCItemMachine} from '../machines/VCItemMachine/ExistingMosipVCItem/ExistingMosipVCItemMachine';
 import {useTranslation} from 'react-i18next';
 import {FlatList} from 'react-native-gesture-handler';
 import {VCMetadata} from '../shared/VCMetadata';
 import testIDProps from '../shared/commonUtil';
 import {getKebabMenuOptions} from './kebabMenuUtils';
+import {VCItemMachine} from '../machines/VCItemMachine/VCItemMachine';
 
 export const KebabPopUp: React.FC<KebabPopUpProps> = props => {
   const controller = useKebabPopUp(props);
@@ -83,7 +83,7 @@ export interface KebabPopUpProps {
   vcMetadata: VCMetadata;
   isVisible?: boolean;
   onDismiss: () => void;
-  service: ActorRefFrom<typeof ExistingMosipVCItemMachine>;
+  service: ActorRefFrom<typeof VCItemMachine>;
   iconColor?: any;
   icon?: any;
   vcHasImage: boolean;

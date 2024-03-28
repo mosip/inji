@@ -11,7 +11,6 @@ import {
   selectIsWaitingForVcTimeout,
   selectOpenId4VpUri,
   selectSenderInfo,
-  selectSharingProtocol,
 } from '../../machines/bleShare/request/selectors';
 import {
   selectIsBluetoothDenied,
@@ -81,8 +80,6 @@ export function useRequestScreen() {
     statusTitle,
     statusMessage,
     statusHint,
-    sharingProtocol: useSelector(requestService, selectSharingProtocol),
-
     isWaitingForConnection,
     isWaitingForVc,
     isWaitingForVcTimeout,

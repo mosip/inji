@@ -1,7 +1,7 @@
 import {EventFrom, send, sendParent, StateFrom} from 'xstate';
 import {createModel} from 'xstate/lib/model';
 import {StoreEvents} from '../store';
-import {VC} from '../../types/VC/ExistingMosipVC/vc';
+import {VC} from '../../types/VC/vc';
 import {AppServices} from '../../shared/GlobalContext';
 import {log, respond} from 'xstate/lib/actions';
 import {MY_VCS_STORE_KEY, RECEIVED_VCS_STORE_KEY} from '../../shared/constants';
@@ -17,11 +17,10 @@ const model = createModel(
     myVcs: [] as VCMetadata[],
     receivedVcs: [] as VCMetadata[],
     vcs: {} as Record<string, VC>,
-    inProgressVcDownloads: new Set<string>(),
-    areAllVcsDownloaded: false as boolean,
+    inProgressVcDownloads: new Set<string>(), //VCDownloadInProgress
     walletBindingSuccess: false,
     tamperedVcs: [] as VCMetadata[],
-    downloadingFailedVcs: [] as VCMetadata[],
+    downloadingFailedVcs: [] as VCMetadata[], //VCDownloadFailed
     verificationErrorMessage: '' as string,
   },
   {
@@ -33,22 +32,20 @@ const model = createModel(
       VC_ADDED: (vcMetadata: VCMetadata) => ({vcMetadata}),
       REMOVE_VC_FROM_CONTEXT: (vcMetadata: VCMetadata) => ({vcMetadata}),
       VC_METADATA_UPDATED: (vcMetadata: VCMetadata) => ({vcMetadata}),
-      VC_DOWNLOADED: (vc: VC) => ({vc}),
-      VC_DOWNLOADED_FROM_OPENID4VCI: (vc: VC, vcMetadata: VCMetadata) => ({
+      VC_DOWNLOADED: (vc: VC, vcMetadata?: VCMetadata) => ({
         vc,
         vcMetadata,
       }),
       REFRESH_MY_VCS: () => ({}),
       REFRESH_MY_VCS_TWO: (vc: VC) => ({vc}),
       REFRESH_RECEIVED_VCS: () => ({}),
-      GET_RECEIVED_VCS: () => ({}),
       WALLET_BINDING_SUCCESS: () => ({}),
       RESET_WALLET_BINDING_SUCCESS: () => ({}),
       ADD_VC_TO_IN_PROGRESS_DOWNLOADS: (requestId: string) => ({requestId}),
       REMOVE_VC_FROM_IN_PROGRESS_DOWNLOADS: (vcMetadata: VCMetadata) => ({
         vcMetadata,
       }),
-      RESET_ARE_ALL_VCS_DOWNLOADED: () => ({}),
+      RESET_IN_PROGRESS_VCS_DOWNLOADED: () => ({}),
       TAMPERED_VC: (VC: VCMetadata) => ({VC}),
       REMOVE_TAMPERED_VCS: () => ({}),
       DOWNLOAD_LIMIT_EXPIRED: (vcMetadata: VCMetadata) => ({vcMetadata}),
@@ -174,11 +171,8 @@ export const vcMachine =
             REMOVE_VC_FROM_IN_PROGRESS_DOWNLOADS: {
               actions: 'removeVcFromInProgressDownlods',
             },
-            RESET_ARE_ALL_VCS_DOWNLOADED: {
-              actions: 'resetAreAllVcsDownloaded',
-            },
-            VC_DOWNLOADED_FROM_OPENID4VCI: {
-              actions: 'setDownloadedVCFromOpenId4VCI',
+            RESET_IN_PROGRESS_VCS_DOWNLOADED: {
+              actions: 'resetInProgressVcsDownloaded',
             },
             RESET_WALLET_BINDING_SUCCESS: {
               actions: 'resetWalletBindingSuccess',
@@ -266,17 +260,11 @@ export const vcMachine =
           to: context => context.serviceRefs.backup,
         }),
 
-        getReceivedVcsResponse: respond(context => ({
-          type: 'VC_RESPONSE',
-          response: context.receivedVcs || [],
-        })),
-
         getVcItemResponse: respond((context, event) => {
-          const vc =
-            context.vcs[VCMetadata.fromVC(event.vcMetadata)?.getVcKey()];
           return {
             type: 'GET_VC_RESPONSE',
-            vc: vc,
+            response:
+              context.vcs[VCMetadata.fromVC(event.vcMetadata)?.getVcKey()],
           };
         }),
 
@@ -324,7 +312,8 @@ export const vcMachine =
         }),
 
         setDownloadedVc: (context, event) => {
-          const vcUniqueId = VCMetadata.fromVC(event.vc).getVcKey();
+          const vcMetaData = event.vcMetadata ? event.vcMetadata : event.vc;
+          const vcUniqueId = VCMetadata.fromVC(vcMetaData).getVcKey();
           context.vcs[vcUniqueId] = event.vc;
         },
 
@@ -350,23 +339,11 @@ export const vcMachine =
 
             return updatedInProgressList;
           },
-          areAllVcsDownloaded: context => {
-            if (context.inProgressVcDownloads.size == 0) {
-              return true;
-            }
-            return false;
-          },
         }),
 
-        resetAreAllVcsDownloaded: model.assign({
-          areAllVcsDownloaded: () => false,
+        resetInProgressVcsDownloaded: model.assign({
           inProgressVcDownloads: new Set<string>(),
         }),
-        setDownloadedVCFromOpenId4VCI: (context, event) => {
-          if (event.vc)
-            context.vcs[VCMetadata.fromVC(event.vcMetadata).getVcKey()] =
-              event.vc;
-        },
 
         setUpdatedVcMetadatas: send(
           _context => {
@@ -486,10 +463,6 @@ export function selectBindedVcsMetadata(state: State): VCMetadata[] {
       !isEmpty(walletBindingResponse?.walletBindingId)
     );
   });
-}
-
-export function selectAreAllVcsDownloaded(state: State) {
-  return state.context.areAllVcsDownloaded;
 }
 
 export function selectInProgressVcDownloads(state: State) {

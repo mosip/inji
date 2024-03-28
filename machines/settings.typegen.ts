@@ -26,8 +26,10 @@ export interface Typegen0 {
   eventsCausingActions: {
     requestStoredContext: 'xstate.init';
     resetCredentialRegistryResponse: 'CANCEL' | 'UPDATE_HOST';
+    resetIsBiometricToggled: 'DISMISS';
     setBackupAndRestoreOptionExplored: 'SET_IS_BACKUP_AND_RESTORE_EXPLORED';
     setContext: 'STORE_RESPONSE';
+    setIsBiometricToggled: 'TOGGLE_BIOMETRIC_UNLOCK';
     storeContext:
       | 'ACCEPT_HARDWARE_SUPPORT_NOT_EXISTS'
       | 'SET_IS_BACKUP_AND_RESTORE_EXPLORED'

@@ -13,6 +13,7 @@ import {
   selectIssuersMachine,
   selectIsMinimumStorageLimitReached,
 } from './HomeScreenMachine';
+import {selectVc} from '../../machines/VCItemMachine/VCItemSelectors';
 
 let homeMachineService;
 function useCreateHomeMachineService() {
@@ -31,8 +32,6 @@ export function getHomeMachineService() {
 }
 
 export function useHomeScreen(props: HomeRouteProps) {
-  const {appService} = useContext(GlobalContext);
-  const vcService = appService.children.get('vc');
   const service = useCreateHomeMachineService();
 
   useEffect(() => {
@@ -43,20 +42,17 @@ export function useHomeScreen(props: HomeRouteProps) {
 
   return {
     service,
-
     activeTab: useSelector(service, selectActiveTab),
     selectedVc: useSelector(service, selectSelectedVc),
+    vc: useSelector(service, selectVc),
     tabRefs: useSelector(service, selectTabRefs),
-
     isViewingVc: useSelector(service, selectViewingVc),
     haveTabsLoaded: useSelector(service, selectTabsLoaded),
-
     IssuersService: useSelector(service, selectIssuersMachine),
     isMinimumStorageLimitReached: useSelector(
       service,
       selectIsMinimumStorageLimitReached,
     ),
-
     DISMISS: () => service.send(HomeScreenEvents.DISMISS()),
     GOTO_ISSUERS: () => service.send(HomeScreenEvents.GOTO_ISSUERS()),
     DISMISS_MODAL: () => service.send(HomeScreenEvents.DISMISS_MODAL()),

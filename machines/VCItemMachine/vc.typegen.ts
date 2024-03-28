@@ -1,3 +1,5 @@
+// This file was automatically generated. Edits will be overwritten
+
 export interface Typegen0 {
   '@@xstate/typegen': true;
   internalEvents: {
@@ -37,12 +39,11 @@ export interface Typegen0 {
       | 'REMOVE_VC_FROM_IN_PROGRESS_DOWNLOADS'
       | 'VERIFY_VC_FAILED';
     removeVcFromMyVcs: 'REMOVE_VC_FROM_CONTEXT';
-    resetAreAllVcsDownloaded: 'RESET_ARE_ALL_VCS_DOWNLOADED';
     resetDownloadFailedVcs: 'STORE_RESPONSE';
+    resetInProgressVcsDownloaded: 'RESET_IN_PROGRESS_VCS_DOWNLOADED';
     resetVerificationErrorMessage: 'RESET_VERIFY_ERROR';
     resetWalletBindingSuccess: 'RESET_WALLET_BINDING_SUCCESS';
     sendBackupEvent: 'done.invoke.vc.tamperedVCs.triggerAutoBackupForTamperedVcDeletion:invocation[0]';
-    setDownloadedVCFromOpenId4VCI: 'VC_DOWNLOADED_FROM_OPENID4VCI';
     setDownloadedVc: 'VC_DOWNLOADED';
     setDownloadingFailedVcs: 'DOWNLOAD_LIMIT_EXPIRED';
     setMyVcs: 'STORE_RESPONSE';
@@ -73,6 +74,7 @@ export interface Typegen0 {
     | 'ready.receivedVcs.idle'
     | 'ready.receivedVcs.refreshing'
     | 'tamperedVCs'
+    | 'tamperedVCs.idle'
     | 'tamperedVCs.refreshVcsMetadata'
     | 'tamperedVCs.triggerAutoBackupForTamperedVcDeletion'
     | {
@@ -85,6 +87,7 @@ export interface Typegen0 {
               receivedVcs?: 'idle' | 'refreshing';
             };
         tamperedVCs?:
+          | 'idle'
           | 'refreshVcsMetadata'
           | 'triggerAutoBackupForTamperedVcDeletion';
       };

@@ -1,12 +1,6 @@
 import React from 'react';
-import {
-  VCCardView,
-  EsignetVCItemProps,
-  ExistingVCItemProps,
-} from './Views/VCCardView';
+import {VCCardView, VCItemProps} from './Views/VCCardView';
 
-export const VcItemContainer: React.FC<
-  ExistingVCItemProps | EsignetVCItemProps
-> = props => {
+export const VcItemContainer: React.FC<VCItemProps> = props => {
   return <VCCardView {...props} />;
 };

@@ -125,6 +125,7 @@ export interface Typegen0 {
       | 'SELECTED_ISSUER'
       | 'TRY_AGAIN'
       | 'done.invoke.issuersMachine.performAuthorization:invocation[0]';
+    setMetadataInCredentialData: 'done.invoke.issuersMachine.verifyingCredential:invocation[0]';
     setNoInternet: 'done.invoke.checkInternet';
     setOIDCConfigError: 'error.platform.issuersMachine.performAuthorization:invocation[0]';
     setPrivateKey: 'done.invoke.issuersMachine.generateKeyPair:invocation[0]';
@@ -132,6 +133,7 @@ export interface Typegen0 {
     setSelectedIssuerId: 'SELECTED_ISSUER';
     setSelectedIssuers: 'done.invoke.issuersMachine.downloadIssuerConfig:invocation[0]';
     setTokenResponse: 'done.invoke.issuersMachine.performAuthorization:invocation[0]';
+    setVCMetadata: 'done.invoke.issuersMachine.verifyingCredential:invocation[0]';
     setVerifiableCredential: 'done.invoke.issuersMachine.downloadCredentials:invocation[0]';
     storeKeyPair: 'done.invoke.issuersMachine.generateKeyPair:invocation[0]';
     storeVcMetaContext: 'done.invoke.issuersMachine.verifyingCredential:invocation[0]';

@@ -1,5 +1,7 @@
 import {StateFrom} from 'xstate';
 import {requestMachine} from './requestMachine';
+import {VCMetadata} from '../../../shared/VCMetadata';
+import {getMosipLogo} from '../../../components/VC/common/VCUtils';
 
 type State = StateFrom<typeof requestMachine>;
 
@@ -7,12 +9,31 @@ export function selectSenderInfo(state: State) {
   return state.context.senderInfo;
 }
 
-export function selectIncomingVc(state: State) {
-  return state.context.incomingVc;
+export function selectCredential(state: State) {
+  return new VCMetadata(state.context.incomingVc?.vcMetadata).isFromOpenId4VCI()
+    ? state.context.incomingVc?.verifiableCredential?.credential
+    : state.context.incomingVc?.verifiableCredential;
 }
 
-export function selectSharingProtocol(state: State) {
-  return state.context.sharingProtocol;
+export function selectVerifiableCredentialData(state: State) {
+  const vcMetadata = new VCMetadata(state.context.incomingVc?.vcMetadata);
+  return vcMetadata.isFromOpenId4VCI()
+    ? {
+        vcMetadata: vcMetadata,
+        face: state.context.incomingVc?.verifiableCredential.credential
+          .credentialSubject.face,
+        issuerLogo: state.context.incomingVc?.verifiableCredential?.issuerLogo,
+        wellKnown: state.context.incomingVc?.verifiableCredential?.wellKnown,
+        credentialTypes:
+          state.context.incomingVc?.verifiableCredential?.credentialTypes,
+        issuer: vcMetadata.issuer,
+      }
+    : {
+        vcMetadata: vcMetadata,
+        issuer: vcMetadata.issuer,
+        face: state.context.incomingVc?.credential?.biometrics?.face,
+        issuerLogo: getMosipLogo(),
+      };
 }
 
 export function selectIsIncomingVp(state: State) {

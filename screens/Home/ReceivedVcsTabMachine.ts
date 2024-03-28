@@ -1,7 +1,7 @@
 import {ActorRefFrom, EventFrom, sendParent} from 'xstate';
 import {createModel} from 'xstate/lib/model';
-import {ExistingMosipVCItemMachine} from '../../machines/VCItemMachine/ExistingMosipVCItem/ExistingMosipVCItemMachine';
 import {AppServices} from '../../shared/GlobalContext';
+import {VCItemMachine} from '../../machines/VCItemMachine/VCItemMachine';
 
 const model = createModel(
   {
@@ -10,9 +10,7 @@ const model = createModel(
   },
   {
     events: {
-      VIEW_VC: (
-        vcItemActor: ActorRefFrom<typeof ExistingMosipVCItemMachine>,
-      ) => ({
+      VIEW_VC: (vcItemActor: ActorRefFrom<typeof VCItemMachine>) => ({
         vcItemActor,
       }),
       REFRESH: () => ({}),

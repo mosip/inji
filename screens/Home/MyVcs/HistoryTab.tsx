@@ -7,7 +7,7 @@ import {ActivityLogText} from '../../../components/ActivityLogText';
 import {useKebabPopUp} from '../../../components/KebabPopUpController';
 import {VCMetadata} from '../../../shared/VCMetadata';
 import {ActorRefFrom} from 'xstate';
-import {ExistingMosipVCItemMachine} from '../../../machines/VCItemMachine/ExistingMosipVCItem/ExistingMosipVCItemMachine';
+import {VCItemMachine} from '../../../machines/VCItemMachine/VCItemMachine';
 
 export const HistoryTab: React.FC<HistoryTabProps> = props => {
   const {t} = useTranslation('HistoryTab');
@@ -57,6 +57,6 @@ export const HistoryTab: React.FC<HistoryTabProps> = props => {
 };
 
 export interface HistoryTabProps {
-  service: ActorRefFrom<typeof ExistingMosipVCItemMachine>;
+  service: ActorRefFrom<typeof VCItemMachine>;
   vcMetadata: VCMetadata;
 }

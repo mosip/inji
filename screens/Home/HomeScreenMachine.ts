@@ -1,15 +1,14 @@
 import {ActorRefFrom, assign, EventFrom, send, spawn, StateFrom} from 'xstate';
 import {createModel} from 'xstate/lib/model';
-import {ExistingMosipVCItemMachine} from '../../machines/VCItemMachine/ExistingMosipVCItem/ExistingMosipVCItemMachine';
 import {AppServices} from '../../shared/GlobalContext';
 import {createMyVcsTabMachine, MyVcsTabMachine} from './MyVcsTabMachine';
 import {
   createReceivedVcsTabMachine,
   ReceivedVcsTabMachine,
 } from './ReceivedVcsTabMachine';
-import {EsignetMosipVCItemMachine} from '../../machines/VCItemMachine/EsignetMosipVCItem/EsignetMosipVCItemMachine';
 import {IssuersMachine} from '../../machines/issuersMachine';
 import Storage from '../../shared/storage';
+import {VCItemMachine} from '../../machines/VCItemMachine/VCItemMachine';
 
 const model = createModel(
   {
@@ -18,9 +17,7 @@ const model = createModel(
       myVcs: {} as ActorRefFrom<typeof MyVcsTabMachine>,
       receivedVcs: {} as ActorRefFrom<typeof ReceivedVcsTabMachine>,
     },
-    selectedVc: null as
-      | ActorRefFrom<typeof ExistingMosipVCItemMachine>
-      | ActorRefFrom<typeof EsignetMosipVCItemMachine>,
+    selectedVc: ActorRefFrom<typeof VCItemMachine>,
     activeTab: 0,
   },
   {
@@ -28,11 +25,7 @@ const model = createModel(
       SELECT_MY_VCS: () => ({}),
       SELECT_RECEIVED_VCS: () => ({}),
       SELECT_HISTORY: () => ({}),
-      VIEW_VC: (
-        vcItemActor:
-          | ActorRefFrom<typeof ExistingMosipVCItemMachine>
-          | ActorRefFrom<typeof EsignetMosipVCItemMachine>,
-      ) => ({
+      VIEW_VC: (vcItemActor: ActorRefFrom<typeof VCItemMachine>) => ({
         vcItemActor,
       }),
       DISMISS_MODAL: () => ({}),

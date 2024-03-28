@@ -20,3 +20,8 @@ export enum VCItemContainerFlowType {
   QR_LOGIN = 'qr login',
   VC_SHARE = 'vc share',
 }
+
+export interface CommunicationDetails {
+  phoneNumber: string;
+  emailId: string;
+}

@@ -5,16 +5,16 @@ import {ModalProps} from '../../../components/ui/Modal';
 import {
   AddVcModalEvents,
   AddVcModalMachine,
-  selectIsAcceptingOtpInput,
-  selectIsInvalid,
-  selectIsRequestingOtp,
-  selectOtpError,
   selectId,
   selectIdError,
   selectIdInputRef,
   selectIdType,
+  selectIsAcceptingOtpInput,
+  selectIsInvalid,
+  selectIsRequestingOtp,
+  selectOtpError,
 } from './AddVcModalMachine';
-import {VcIdType} from '../../../types/VC/ExistingMosipVC/vc';
+import {VcIdType} from '../../../types/VC/vc';
 import {IndividualId} from '../../../shared/constants';
 
 export function useIdInputModal({service}: IdInputModalProps) {

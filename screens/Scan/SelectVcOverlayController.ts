@@ -1,13 +1,13 @@
 import {useState} from 'react';
 import {ActorRefFrom} from 'xstate';
-import {ExistingMosipVCItemMachine} from '../../machines/VCItemMachine/ExistingMosipVCItem/ExistingMosipVCItemMachine';
-import {VC} from '../../types/VC/ExistingMosipVC/vc';
+import {VC} from '../../types/VC/vc';
 import {VCMetadata} from '../../shared/VCMetadata';
+import {VCItemMachine} from '../../machines/VCItemMachine/VCItemMachine';
 
 export function useSelectVcOverlay(props: SelectVcOverlayProps) {
   const [selectedIndex, setSelectedIndex] = useState<number>(null);
   const [selectedVcRef, setSelectedVcRef] =
-    useState<ActorRefFrom<typeof ExistingMosipVCItemMachine>>(null);
+    useState<ActorRefFrom<typeof VCItemMachine>>(null);
 
   return {
     selectVcItem,
@@ -25,7 +25,7 @@ export function useSelectVcOverlay(props: SelectVcOverlayProps) {
   };
 
   function selectVcItem(index: number) {
-    return (vcRef: ActorRefFrom<typeof ExistingMosipVCItemMachine>) => {
+    return (vcRef: ActorRefFrom<typeof VCItemMachine>) => {
       setSelectedIndex(index);
       setSelectedVcRef(vcRef);
     };

@@ -93,13 +93,6 @@ function isCustomSecureKeystore() {
   return !isIOS() ? SecureKeystore.deviceSupportsHardware() : false;
 }
 
-export interface WalletBindingResponse {
-  walletBindingId: string;
-  keyId: string;
-  thumbprint: string;
-  expireDateTime: string;
-}
-
 export async function encryptJson(
   encryptionKey: string,
   data: string,

@@ -1,25 +1,24 @@
 import React, {useContext, useEffect, useRef} from 'react';
 import {useTranslation} from 'react-i18next';
-import {Button, Column, Row, Text} from '../../components/ui';
+import {Button, Column, Text} from '../../components/ui';
 import {Theme} from '../../components/ui/styleUtils';
 import {useSendVcScreen} from './SendVcScreenController';
 import {VerifyIdentityOverlay} from '../VerifyIdentityOverlay';
 import {BackHandler} from 'react-native';
 import {useInterpret} from '@xstate/react';
-import {createExistingMosipVCItemMachine} from '../../machines/VCItemMachine/ExistingMosipVCItem/ExistingMosipVCItemMachine';
 import {GlobalContext} from '../../shared/GlobalContext';
 import {useFocusEffect} from '@react-navigation/native';
 import {VcItemContainer} from '../../components/VC/VcItemContainer';
 import {VCMetadata} from '../../shared/VCMetadata';
-import {createEsignetMosipVCItemMachine} from '../../machines/VCItemMachine/EsignetMosipVCItem/EsignetMosipVCItemMachine';
+import {createVCItemMachine} from '../../machines/VCItemMachine/VCItemMachine';
 import {
   getImpressionEventData,
   sendImpressionEvent,
 } from '../../shared/telemetry/TelemetryUtils';
 import {TelemetryConstants} from '../../shared/telemetry/TelemetryConstants';
 import {
-  VCItemContainerFlowType,
   getVCsOrderedByPinStatus,
+  VCItemContainerFlowType,
 } from '../../shared/Utils';
 import {Issuers} from '../../shared/openId4VCI/Utils';
 import {FaceVerificationAlertOverlay} from './FaceVerificationAlertOverlay';
@@ -38,15 +37,10 @@ export const SendVcScreen: React.FC = () => {
   if (shareableVcsMetadataOrderedByPinStatus?.length > 0) {
     const vcMetadata = shareableVcsMetadataOrderedByPinStatus[0];
     const firstVCMachine = useRef(
-      VCMetadata.fromVC(vcMetadata).isFromOpenId4VCI()
-        ? createEsignetMosipVCItemMachine(
-            appService.getSnapshot().context.serviceRefs,
-            vcMetadata,
-          )
-        : createExistingMosipVCItemMachine(
-            appService.getSnapshot().context.serviceRefs,
-            vcMetadata,
-          ),
+      createVCItemMachine(
+        appService.getSnapshot().context.serviceRefs,
+        vcMetadata,
+      ),
     );
 
     service = useInterpret(firstVCMachine.current);
@@ -108,11 +102,10 @@ export const SendVcScreen: React.FC = () => {
         <Column
           style={Theme.SendVcScreenStyles.shareOptionButtonsContainer}
           backgroundColor={Theme.Colors.whiteBackgroundColor}>
-          {!controller.selectedVc.shouldVerifyPresence &&
-            controller.selectedVc?.vcMetadata &&
+          {!controller.verifiableCredentialData.shouldVerifyPresence &&
+            controller.verifiableCredentialData.vcMetadata &&
             [Issuers.Mosip, Issuers.ESignet].indexOf(
-              VCMetadata.fromVcMetadataString(controller.selectedVc.vcMetadata)
-                .issuer,
+              controller.verifiableCredentialData.issuer,
             ) !== -1 && (
               <Button
                 type="gradient"
@@ -141,7 +134,8 @@ export const SendVcScreen: React.FC = () => {
       </Column>
 
       <VerifyIdentityOverlay
-        vc={controller.selectedVc}
+        credential={controller.credential}
+        verifiableCredentialData={controller.verifiableCredentialData}
         isVerifyingIdentity={controller.isVerifyingIdentity}
         onCancel={controller.CANCEL}
         onFaceValid={controller.FACE_VALID}

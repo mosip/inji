@@ -77,12 +77,11 @@ export interface Typegen0 {
       | 'DISCONNECT'
       | 'DISMISS'
       | 'SCREEN_BLUR'
-      | 'SCREEN_FOCUS'
       | 'STORE_RESPONSE'
       | 'xstate.init';
     resetFaceCaptureBannerStatus: 'ACCEPT_REQUEST' | 'CLOSE_BANNER';
-    resetFlowType: 'DISMISS';
-    resetSelectedVc: 'DISMISS';
+    resetFlowType: 'GOTO_HISTORY';
+    resetSelectedVc: 'GOTO_HISTORY';
     resetShouldVerifyPresence: 'CANCEL' | 'CONNECTED' | 'DISMISS' | 'RETRY';
     sendBLEConnectionErrorEvent: 'BLE_ERROR';
     sendScanData: 'SCAN';
@@ -144,11 +143,7 @@ export interface Typegen0 {
     checkStorageAvailability: 'RESET' | 'SCREEN_FOCUS' | 'SELECT_VC';
     createVp: never;
     disconnect: '' | 'DISMISS' | 'LOCATION_ENABLED' | 'RETRY' | 'SCREEN_BLUR';
-    monitorConnection:
-      | 'DISMISS'
-      | 'SCREEN_BLUR'
-      | 'SCREEN_FOCUS'
-      | 'xstate.init';
+    monitorConnection: 'DISMISS' | 'SCREEN_BLUR' | 'xstate.init';
     requestBluetooth: 'BLUETOOTH_STATE_DISABLED';
     requestNearByDevicesPermission: 'NEARBY_DISABLED';
     requestToEnableLocationPermission: 'LOCATION_DISABLED';

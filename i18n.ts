@@ -10,9 +10,10 @@ import kn from './locales/kan.json';
 import ta from './locales/tam.json';
 
 import {iso6393To1} from 'iso-639-3';
-import {LocalizedField} from './types/VC/ExistingMosipVC/vc';
+
 import Keychain from 'react-native-keychain';
 import {getItem} from './machines/store';
+import {LocalizedField} from './types/VC/vc';
 
 const resources = {en, fil, ar, hi, kn, ta};
 const locale = Localization.locale;

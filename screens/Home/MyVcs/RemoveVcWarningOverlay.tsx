@@ -8,7 +8,7 @@ import {SvgImage} from '../../../components/ui/svg';
 import {useKebabPopUp} from '../../../components/KebabPopUpController';
 import {VCMetadata} from '../../../shared/VCMetadata';
 import {ActorRefFrom} from 'xstate';
-import {ExistingMosipVCItemEvents} from '../../../machines/VCItemMachine/ExistingMosipVCItem/ExistingMosipVCItemMachine';
+import {VCItemEvents} from '../../../machines/VCItemMachine/VCItemMachine';
 
 export const RemoveVcWarningOverlay: React.FC<
   RemoveVcWarningOverlayProps
@@ -80,6 +80,6 @@ export const RemoveVcWarningOverlay: React.FC<
 
 interface RemoveVcWarningOverlayProps {
   testID: string;
-  service: ActorRefFrom<typeof ExistingMosipVCItemEvents>;
+  service: ActorRefFrom<typeof VCItemEvents>;
   vcMetadata: VCMetadata;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {I18nManager, Pressable, Modal as RNModal, View} from 'react-native';
+import {I18nManager, Modal as RNModal, Pressable, View} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {Column, Row, Text} from '.';
 import {useSendVcScreen} from '../../screens/Scan/SendVcScreenController';
@@ -109,5 +109,5 @@ export interface ModalProps {
   headerLeft?: React.ReactElement;
   arrowLeft?: boolean;
   onShow?: () => void;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }

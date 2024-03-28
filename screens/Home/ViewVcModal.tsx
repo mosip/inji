@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {Column, Row} from '../../components/ui';
+import React from 'react';
+import {Row} from '../../components/ui';
 import {Modal} from '../../components/ui/Modal';
 import {MessageOverlay} from '../../components/MessageOverlay';
 import {ToastItem} from '../../components/ui/ToastItem';
@@ -8,12 +8,6 @@ import {useTranslation} from 'react-i18next';
 import {OtpVerificationModal} from './MyVcs/OtpVerificationModal';
 import {BindingVcWarningOverlay} from './MyVcs/BindingVcWarningOverlay';
 import {VcDetailsContainer} from '../../components/VC/VcDetailsContainer';
-import {
-  getEndEventData,
-  getErrorEventData,
-  sendEndEvent,
-  sendErrorEvent,
-} from '../../shared/telemetry/TelemetryUtils';
 import {TelemetryConstants} from '../../shared/telemetry/TelemetryConstants';
 import {BannerNotificationContainer} from '../../components/BannerNotificationContainer';
 import {Icon} from 'react-native-elements';
@@ -23,7 +17,6 @@ import {HelpScreen} from '../../components/HelpScreen';
 import {Pressable} from 'react-native';
 import {KebabPopUp} from '../../components/KebabPopUp';
 import {SvgImage} from '../../components/ui/svg';
-import {faceImageSource} from '../../components/VcItemContainerProfileImage';
 import {VCMetadata} from '../../shared/VCMetadata';
 import {WalletBinding} from './MyVcs/WalletBinding';
 import {RemoveVcWarningOverlay} from './MyVcs/RemoveVcWarningOverlay';
@@ -32,42 +25,7 @@ import {HistoryTab} from './MyVcs/HistoryTab';
 export const ViewVcModal: React.FC<ViewVcModalProps> = props => {
   const {t} = useTranslation('ViewVcModal');
   const controller = useViewVcModal(props);
-
-  useEffect(() => {
-    let error = controller.walletBindingError;
-    if (error) {
-      error = controller.bindingAuthFailedError
-        ? controller.bindingAuthFailedError + '-' + error
-        : error;
-      sendErrorEvent(
-        getErrorEventData(
-          TelemetryConstants.FlowType.vcActivation,
-          TelemetryConstants.ErrorId.activationFailed,
-          error,
-        ),
-      );
-      sendEndEvent(
-        getEndEventData(
-          TelemetryConstants.FlowType.vcActivation,
-          TelemetryConstants.EndEventStatus.failure,
-        ),
-      );
-    }
-  }, [controller.walletBindingError]);
-
-  let selectedVcContext = props.vcItemActor.getSnapshot()?.context;
-
-  const credential = new VCMetadata(
-    selectedVcContext?.vcMetadata,
-  ).isFromOpenId4VCI()
-    ? selectedVcContext?.verifiableCredential?.credential
-    : selectedVcContext?.verifiableCredential;
-
-  const getVcProfileImage = faceImageSource({
-    vcMetadata: new VCMetadata(selectedVcContext?.vcMetadata),
-    context: props.vcItemActor.getSnapshot()?.context,
-    credential: credential,
-  });
+  const profileImage = controller.verifiableCredentialData.face;
 
   const headerRight = flow => {
     return flow === 'downloadedVc' ? (
@@ -91,7 +49,7 @@ export const ViewVcModal: React.FC<ViewVcModalProps> = props => {
           <KebabPopUp
             icon={SvgImage.kebabIcon()}
             iconColor={null}
-            vcMetadata={VCMetadata.fromVC(controller.vc.vcMetadata)}
+            vcMetadata={controller.verifiableCredentialData.vcMetadata}
             iconName="dots-three-horizontal"
             iconType="entypo"
             isVisible={
@@ -100,7 +58,7 @@ export const ViewVcModal: React.FC<ViewVcModalProps> = props => {
             }
             onDismiss={() => props.vcItemActor.send('DISMISS')}
             service={props.vcItemActor}
-            vcHasImage={getVcProfileImage !== undefined}
+            vcHasImage={profileImage !== undefined}
           />
         </Pressable>
       </Row>
@@ -117,11 +75,12 @@ export const ViewVcModal: React.FC<ViewVcModalProps> = props => {
       headerElevation={2}>
       <BannerNotificationContainer />
       <VcDetailsContainer
-        vc={controller.vc}
+        credential={controller.credential}
+        verifiableCredentialData={controller.verifiableCredentialData}
         onBinding={controller.addtoWallet}
-        isBindingPending={controller.isWalletBindingPending}
+        walletBindingResponse={controller.walletBindingResponse}
         activeTab={props.activeTab}
-        vcHasImage={getVcProfileImage !== undefined}
+        vcHasImage={profileImage !== undefined}
       />
 
       {controller.isAcceptingBindingOtp && (
@@ -132,8 +91,8 @@ export const ViewVcModal: React.FC<ViewVcModalProps> = props => {
           onInputDone={controller.inputOtp}
           error={controller.otpError}
           resend={controller.RESEND_OTP}
-          phone={controller.isPhoneNumber}
-          email={controller.isEmail}
+          phone={controller.isCommunicationDetails.phoneNumber}
+          email={controller.isCommunicationDetails.emailId}
           flow={TelemetryConstants.FlowType.vcActivation}
         />
       )}
@@ -163,18 +122,20 @@ export const ViewVcModal: React.FC<ViewVcModalProps> = props => {
 
       <WalletBinding
         service={props.vcItemActor}
-        vcMetadata={controller.vc.vcMetadata}
+        vcMetadata={controller.verifiableCredentialData.vcMetadata}
       />
 
       <RemoveVcWarningOverlay
         testID="removeVcWarningOverlay"
         service={props.vcItemActor}
-        vcMetadata={controller.vc.vcMetadata}
+        vcMetadata={controller.verifiableCredentialData.vcMetadata}
       />
 
       <HistoryTab
         service={props.vcItemActor}
-        vcMetadata={VCMetadata.fromVC(controller.vc.vcMetadata)}
+        vcMetadata={VCMetadata.fromVC(
+          controller.verifiableCredentialData.vcMetadata,
+        )}
       />
     </Modal>
   );

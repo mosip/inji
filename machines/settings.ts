@@ -4,15 +4,15 @@ import {AppServices} from '../shared/GlobalContext';
 import {
   APP_ID_DICTIONARY,
   APP_ID_LENGTH,
-  MIMOTO_BASE_URL,
-  isIOS,
-  SETTINGS_STORE_KEY,
+  COMMON_PROPS_KEY,
   ESIGNET_BASE_URL,
+  isIOS,
+  MIMOTO_BASE_URL,
+  SETTINGS_STORE_KEY,
 } from '../shared/constants';
-import {VCLabel} from '../types/VC/ExistingMosipVC/vc';
+import {VCLabel} from '../types/VC/vc';
 import {StoreEvents} from './store';
 import getAllConfigurations from '../shared/api';
-import {COMMON_PROPS_KEY} from '../shared/constants';
 import Storage from '../shared/storage';
 import ShortUniqueId from 'short-unique-id';
 import {__AppId} from '../shared/GlobalVariables';

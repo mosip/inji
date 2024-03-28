@@ -1,24 +1,15 @@
 import tuvali from '@mosip/tuvali';
 import BluetoothStateManager from 'react-native-bluetooth-state-manager';
 import {EmitterSubscription, Linking} from 'react-native';
-import {
-  checkMultiple,
-  PERMISSIONS,
-  requestMultiple,
-  RESULTS,
-} from 'react-native-permissions';
+import {checkMultiple, PERMISSIONS, requestMultiple, RESULTS,} from 'react-native-permissions';
 import {assign, EventFrom, send, StateFrom} from 'xstate';
 import {createModel} from 'xstate/lib/model';
 import {DeviceInfo} from '../../../components/DeviceInfoList';
 import {getDeviceNameSync} from 'react-native-device-info';
 import {StoreEvents} from '../../store';
-import {VC} from '../../../types/VC/ExistingMosipVC/vc';
+import {VC} from '../../../types/VC/vc';
 import {AppServices} from '../../../shared/GlobalContext';
-import {
-  androidVersion,
-  isAndroid,
-  RECEIVED_VCS_STORE_KEY,
-} from '../../../shared/constants';
+import {androidVersion, isAndroid, RECEIVED_VCS_STORE_KEY,} from '../../../shared/constants';
 import {ActivityLogEvents, ActivityLogType} from '../../activityLog';
 import {VcEvents} from '../../VCItemMachine/vc';
 import {subscribe} from '../../../shared/openIdBLE/verifierEventHandler';
