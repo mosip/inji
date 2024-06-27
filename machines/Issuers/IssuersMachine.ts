@@ -413,6 +413,7 @@ export interface displayType {
   language: string;
   logo: logoType;
   background_color: string;
+  background_image: string;
   text_color: string;
   title: string;
   description: string;

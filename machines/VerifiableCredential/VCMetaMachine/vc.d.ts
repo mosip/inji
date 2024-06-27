@@ -89,7 +89,7 @@ export interface CredentialTypes {
   id: string;
   scope: string;
   display: [displayType];
-  proof_types_supported: [string];
+  proof_types_supported: Object;
   credential_definition: {
     type: Object[];
     credentialSubject: CredentialSubject;
@@ -99,7 +99,7 @@ export interface CredentialTypes {
 export interface IssuerWellknownResponse {
   credential_issuer: string;
   credential_endpoint: string;
-  credentials_supported: Object[];
+  credential_configurations_supported: Object;
 }
 
 export interface VCLabel {

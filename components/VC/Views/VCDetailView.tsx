@@ -16,6 +16,7 @@ import {
   DETAIL_VIEW_BOTTOM_SECTION_FIELDS,
   fieldItemIterator,
   getBackgroundColour,
+  getBackgroundImage,
   getTextColor,
 } from '../common/VCUtils';
 import {ProfileIcon} from '../../ProfileIcon';
@@ -71,7 +72,7 @@ export const VCDetailView: React.FC<VCItemDetailsProps> = props => {
                 Theme.Styles.openCardBgContainer,
                 getBackgroundColour(props.wellknown),
               ]}
-              source={Theme.OpenCard}>
+              source={getBackgroundImage(props.wellknown)}>
               <Row padding="14 14 0 14" margin="0 0 0 0">
                 <Column crossAlign="center">
                   {getProfileImage(face)}

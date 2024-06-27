@@ -50,14 +50,21 @@ export const IssuersService = () => {
             wellknownResponse.credential_issuer;
           issuersConfig.credential_endpoint =
             wellknownResponse.credential_endpoint;
-          issuersConfig.credentials_supported =
-            wellknownResponse.credentials_supported;
+          issuersConfig.credential_configurations_supported =
+            wellknownResponse.credential_configurations_supported;
         }
       }
       return issuersConfig;
     },
     downloadCredentialTypes: async (context: any) => {
-      return context.selectedIssuer.credentials_supported;
+      const credentialTypes = [];
+      for (const key in context.selectedIssuer
+        .credential_configurations_supported) {
+        credentialTypes.push(
+          context.selectedIssuer.credential_configurations_supported[key],
+        );
+      }
+      return credentialTypes;
     },
     downloadCredential: async (context: any) => {
       const downloadTimeout = await vcDownloadTimeout();
